@@ -2,11 +2,11 @@ const puppeteer = require('puppeteer');
 
 process.setMaxListeners(0)
 const getPageHtml = async (url) => {
-    const browser = await puppeteer.launch({
-        headless: true,
-        executablePath: process.env.CHROME_BIN || null,
-        args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage']
-    });
+    const puppeteer_options = { headless: true, args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage'] }
+    if (process.env.CHROME_BIN !== '') {
+        puppeteer_options.executablePath = process.env.CHROME_BIN || null;
+    }
+    const browser = await puppeteer.launch(puppeteer_options);
     const page = await browser.newPage();
     await page.goto(url);
     await page.waitForSelector('#notion-app');

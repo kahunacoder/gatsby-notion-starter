@@ -9,23 +9,34 @@ import { rhythm } from "../utils/typography"
 
 
 
+class BlogIndex extends React.Component {
+  render () {
+    // const { data } = this.props
 
-const Blog = (props) => {
-  const { data: { allPosts } } = props
-  return (
-    <Layout>
-      <SEO title="All posts" />
-      <Bio />
-      {
-        allPosts.nodes.map(node => <PostItem data={node} />)
-      }
-    </Layout>
-  )
+    // const Blog = (props) => {
+    // const siteTitle = props.data.site.siteMetadata.title
+    const { data: { allPosts } } = this.props
+    const { data: { site } } = this.props
+    return (
+      <Layout location={this.props.location} title={site.siteTitle}>
+        <SEO title="All posts" />
+        <Bio />
+        {
+          allPosts.nodes.map(node => <PostItem data={node} />)
+        }
+      </Layout>
+    )
+  }
 }
 
-export default Blog
+export default BlogIndex
 export const query = graphql`
   query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allPosts(filter: {status: {eq: "published"}, content_type: {eq: "article"}}) {
       nodes {
         title

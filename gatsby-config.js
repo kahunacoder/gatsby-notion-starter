@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog TailwindCSS`,
+    title: `ElectricTailwind`,
     author: `Gary Smith`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    description: `A blog for my electric bike adventures.`,
     siteUrl: `http://localhost:8000/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `electrictailwind`,
     },
   },
   plugins: [
