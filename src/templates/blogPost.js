@@ -5,6 +5,8 @@ import { parseImageUrl } from '@conradlin/notabase/src/utils'
 
 import Bio from "../components/bio"
 import SEO from "../components/seo"
+import NotionNav from "../components/NotionNav"
+
 import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
@@ -13,7 +15,6 @@ class BlogPostTemplate extends React.Component {
     // export default ({ data }) => {
     const { posts: { title, tags, publish_date, html, url, slug, desc, color } } = this.props.data
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
     // console.log(previous)
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -38,34 +39,7 @@ class BlogPostTemplate extends React.Component {
             <Bio />
           </footer>
         </article>
-        <nav>
-          <ul
-            className="flex flex-wrap justify-between mb-8"
-          >
-            <li>
-              {previous && (
-                <Link
-                  className="text-blue-600"
-                  to={"/posts/" + previous.url}
-                  rel="prev"
-                >
-                  ← {previous.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link
-                  className="text-blue-600"
-                  to={"/posts/" + next.url}
-                  rel="next"
-                >
-                  {next.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+        <NotionNav pageNav={this.props.pageContext} />
       </Layout>
     )
   }

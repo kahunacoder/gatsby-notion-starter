@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `ElectricTailwind`,
     author: `Gary Smith`,
-    description: `A blog for my electric bike adventures.`,
-    siteUrl: `http://localhost:8000/`,
+    description: `A blog for my life and electric bike tales and tips.`,
+    siteUrl: `http://electrictailwind.com/`,
     social: {
       twitter: `electrictailwind`,
     },
