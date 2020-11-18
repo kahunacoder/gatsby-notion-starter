@@ -1,7 +1,10 @@
 const path = require(`path`)
+const _ = require("lodash")
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+  const tagTemplate = path.resolve(`./src/templates/tags.js`)
+  const blogTemplate = path.resolve(`./src/templates/blogPost.js`)
 
   const blogPost = await graphql(`
   query {
@@ -32,7 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
       // { "/" + previous.category + "/" + previous.url }
       createPage({
         path: "/" + post.node.category + "/" + post.node.url,
-        component: path.resolve(`./src/templates/blogPost.js`),
+        component: blogTemplate,
         context: {
           // Data passed to context is available
           // in page queries as GraphQL variables.
@@ -43,41 +46,51 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
     });
-  });
-  // const newsPost = await graphql(`
-  // query {
-  //     allPosts(filter: {status: {eq: "published"}, content_type: {eq: "newsletter"}}) {
-  //         nodes {
-  //           slug
-  //           url
-  //         }
-  //       }
-  //     }
-  //   `).then(result => {
-  //   if (result.errors) {
-  //     Promise.reject(result.errors);
-  //   }
-  //   const news = result.data.allPosts.nodes
-  //   console.log(news)
-  //   news.forEach(({ post, index }) => {
-  //     const previous = index === news.length - 1 ? null : news[index + 1].node
-  //     const next = index === 0 ? null : news[index - 1].node
 
+  });
+
+  //   // Extract tag data from query.
+  //   const tags = result.data.tagsGroup.group
+
+  //   // Make tag pages.
+  //   tags.forEach(tag => {
   //     createPage({
-  //       path: `subscribe/news/${post.node.url}`,
-  //       component: path.resolve(`./src/templates/blogPost.js`),
+  //       path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+  //       component: tagTemplate,
   //       context: {
-  //         // Data passed to context is available
-  //         // in page queries as GraphQL variables.
-  //         slug: post.node.slug,
-  //         previous,
-  //         next
+  //         tag: tag.fieldValue,
   //       },
-  //     });
-  //   });
-  // });
+  //     })
+  //   })
+  // }
+
+
+
+  const tagsGroup = await graphql(`
+query {
+    tagsGroup: allPosts(limit: 2000) {
+      group(field: tags) {
+        fieldValue
+      }
+    }
+  }
+  `).then(result => {
+    if (result.errors) {
+      Promise.reject(result.errors);
+    }
+    const tags = result.data.tagsGroup.group
+    tags.forEach(tag => {
+      createPage({
+        path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+        component: tagTemplate,
+        context: {
+          tag: tag.fieldValue,
+        },
+      })
+    })
+  });
 
   // return Promise.all([blogPost, newsPost]);
-  return Promise.all([blogPost]);
+  return Promise.all([blogPost, tagsGroup]);
 };
 
