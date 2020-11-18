@@ -11,11 +11,8 @@ import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render () {
-
-    // export default ({ data }) => {
     const { posts: { title, tags, publish_date, html, url, slug, desc, color } } = this.props.data
     const siteTitle = this.props.data.site.siteMetadata.title
-    // console.log(previous)
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
@@ -28,7 +25,13 @@ class BlogPostTemplate extends React.Component {
               {title}
             </h1>
             <p className="text-sm leading-loose mb-8 ">
-              {publish_date.startDate}
+              {publish_date.startDate} #
+              <Link
+                className="text-blue-600"
+                to={"/posts/" + tags}
+              >
+                {tags}
+              </Link>
             </p>
           </header>
           <section

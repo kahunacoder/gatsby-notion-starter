@@ -11,10 +11,6 @@ import { rhythm } from "../utils/typography"
 
 class BlogIndex extends React.Component {
   render () {
-    // const { data } = this.props
-
-    // const Blog = (props) => {
-    // const siteTitle = props.data.site.siteMetadata.title
     const { data: { allPosts } } = this.props
     const { data: { site } } = this.props
     return (
@@ -37,9 +33,13 @@ export const query = graphql`
         title
       }
     }
-    allPosts(filter: {status: {eq: "published"}, content_type: {eq: "article"}}) {
+    allPosts(
+      filter: {status: {eq: "published"}, content_type: {eq: "article"}}
+      sort: { order: [DESC], fields: [publish_date___startDate ] }
+    ) {
       nodes {
         title
+        category
         tags
         desc
         content_type

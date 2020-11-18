@@ -11,6 +11,7 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
             title
             url
+            category
           }
         }
       }
@@ -28,14 +29,15 @@ exports.createPages = async ({ graphql, actions }) => {
       // console.log(post)
       // console.log(index)
       // result.data.allPosts.nodes.forEach(({ slug, url }) => {
+      // { "/" + previous.category + "/" + previous.url }
       createPage({
-        path: `posts/${post.node.url}`,
+        path: "/" + post.node.category + "/" + post.node.url,
         component: path.resolve(`./src/templates/blogPost.js`),
         context: {
           // Data passed to context is available
           // in page queries as GraphQL variables.
           slug: post.node.slug,
-          url: `posts/${post.node.url}`,
+          url: "/" + post.node.category + "/" + post.node.url,
           previous,
           next
         },

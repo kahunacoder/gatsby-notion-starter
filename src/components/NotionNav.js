@@ -16,7 +16,7 @@ class NotionNav extends React.Component {
             {previous && (
               <Link
                 className="text-blue-600"
-                to={"/posts/" + previous.url}
+                to={"/" + previous.category + "/" + previous.url}
                 rel="prev"
               >
                 ← {previous.title}
@@ -27,7 +27,7 @@ class NotionNav extends React.Component {
             {next && (
               <Link
                 className="text-blue-600"
-                to={"/posts/" + next.url}
+                to={"/" + next.category + "/" + next.url}
                 rel="next"
               >
                 {next.title} →
