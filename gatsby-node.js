@@ -5,6 +5,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const tagTemplate = path.resolve(`./src/templates/tags.js`)
   const blogTemplate = path.resolve(`./src/templates/blogPost.js`)
+  const categoryTemplate = path.resolve(`./src/templates/categories.js`)
 
   const blogPost = await graphql(`
   query {
@@ -90,7 +91,30 @@ query {
     })
   });
 
+  const categoriesGroup = await graphql(`
+query {
+    categoriesGroup: allPosts(limit: 2000) {
+      group(field: category) {
+        fieldValue
+      }
+    }
+  }
+  `).then(result => {
+    if (result.errors) {
+      Promise.reject(result.errors);
+    }
+    const categories = result.data.categoriesGroup.group
+    categories.forEach(category => {
+      createPage({
+        path: `/categories/${_.kebabCase(category.fieldValue)}/`,
+        component: categoryTemplate,
+        context: {
+          category: category.fieldValue,
+        },
+      })
+    })
+  });
   // return Promise.all([blogPost, newsPost]);
-  return Promise.all([blogPost, tagsGroup]);
+  return Promise.all([blogPost, tagsGroup, categoriesGroup]);
 };
 
