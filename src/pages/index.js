@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 
 import Bio from "../components/bio"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+// import { rhythm } from "../utils/typography"
 
 
 
@@ -33,10 +33,18 @@ export const query = graphql`
         title
       }
     }
-    allPosts(
-      filter: {status: {eq: "published"}, content_type: {eq: "article"}}
-      sort: { order: [DESC], fields: [publish_date___startDate ] }
-    ) {
+    allPosts(limit: 2000, filter: { status: {eq: "published"}, content_type: {eq: "article"}}) {
+      group(field: category) {
+        fieldValue
+      }
+      edges {
+        node {
+          slug
+          title
+          url
+          category
+        }
+      }
       nodes {
         title
         category

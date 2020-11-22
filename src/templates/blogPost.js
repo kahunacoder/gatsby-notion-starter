@@ -11,8 +11,11 @@ import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render () {
-    const { posts: { title, tags, publish_date, html, url, slug, desc, color } } = this.props.data
     const siteTitle = this.props.data.site.siteMetadata.title
+    const { posts: { title, tags, publish_date, html, url, slug, desc, color } } = this.props.data
+
+    // const catNav = this.props.pageContext
+    // console.log(catNav)
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
@@ -42,7 +45,7 @@ class BlogPostTemplate extends React.Component {
             <Bio />
           </footer>
         </article>
-        <NotionNav pageNav={this.props.pageContext} />
+        <NotionNav pageNav={this.props.pageContext.category} />
       </Layout>
     )
   }

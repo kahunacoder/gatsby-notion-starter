@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import PostItem from "../components/postItem"
 
 class CategoriesTemplate extends React.Component {
   render () {
@@ -20,18 +21,11 @@ class CategoriesTemplate extends React.Component {
         <Bio />
         <h1>Category: {currentCategory}</h1>
         <p>{postsCounter}</p>
-        <ul>
-          {blogPosts.map(item => {
-            console.log(item)
-            const url = "/" + item.category + "/" + item.url
-            const title = item.title
-            return (
-              <li key={url}>
-                <Link to={url}>{title}</Link>
-              </li>
-            )
-          })}
-        </ul>
+
+        {
+          blogPosts.map(node => <PostItem data={node} />)
+        }
+
         <Link to="/categories">View all categories</Link>
       </Layout>
     )
@@ -55,17 +49,19 @@ export const pageQuery = graphql`
       totalCount
       blogPosts: nodes {
         title
-        url
         category
+        tags
+        desc
+        content_type
+        status
+        url
+        read_time
+        cover_image
+        slug
+        publish_date{
+          startDate(formatString: "YYYY-MMM-DD", fromNow: false)
+        }
       }
     }
   }
 `
-// allPosts(
-//       limit: 2000
-//       sort: { fields: [publish_date___startDate], order: DESC }
-//       filter: {  tags: { in: [$tag] } }
-//     ) {
-//       totalCount
-//       }
-//     }

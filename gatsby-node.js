@@ -1,11 +1,9 @@
 const path = require(`path`)
-const _ = require("lodash")
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const tagTemplate = path.resolve(`./src/templates/tags.js`)
-  const blogTemplate = path.resolve(`./src/templates/blogPost.js`)
   const categoryTemplate = path.resolve(`./src/templates/categories.js`)
+  const blogTemplate = path.resolve(`./src/templates/blogPost.js`)
 
   const blogPost = await graphql(`
   query {
@@ -19,102 +17,39 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      categoriesGroup: allPosts(limit: 2000) {
+        group(field: category) {
+          fieldValue
+        }
+      }
     }
     `).then(result => {
     if (result.errors) {
       Promise.reject(result.errors);
     }
     const posts = result.data.allPosts.edges
-    // console.log(posts)
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
-
-      // console.log(post)
-      // console.log(index)
-      // result.data.allPosts.nodes.forEach(({ slug, url }) => {
-      // { "/" + previous.category + "/" + previous.url }
+    posts.forEach((post) => {
       createPage({
-        path: "/" + post.node.category + "/" + post.node.url,
+        path: "/" + post.node.category + "/" + post.node.url + "/",
         component: blogTemplate,
         context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
           slug: post.node.slug,
-          url: "/" + post.node.category + "/" + post.node.url,
-          previous,
-          next
+          url: "/" + post.node.category + "/" + post.node.url + "/",
+          category: post.node.category
         },
       });
     });
-
-  });
-
-  //   // Extract tag data from query.
-  //   const tags = result.data.tagsGroup.group
-
-  //   // Make tag pages.
-  //   tags.forEach(tag => {
-  //     createPage({
-  //       path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
-  //       component: tagTemplate,
-  //       context: {
-  //         tag: tag.fieldValue,
-  //       },
-  //     })
-  //   })
-  // }
-
-
-
-  const tagsGroup = await graphql(`
-query {
-    tagsGroup: allPosts(limit: 2000) {
-      group(field: tags) {
-        fieldValue
-      }
-    }
-  }
-  `).then(result => {
-    if (result.errors) {
-      Promise.reject(result.errors);
-    }
-    const tags = result.data.tagsGroup.group
-    tags.forEach(tag => {
-      createPage({
-        path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
-        component: tagTemplate,
-        context: {
-          tag: tag.fieldValue,
-        },
-      })
-    })
-  });
-
-  const categoriesGroup = await graphql(`
-query {
-    categoriesGroup: allPosts(limit: 2000) {
-      group(field: category) {
-        fieldValue
-      }
-    }
-  }
-  `).then(result => {
-    if (result.errors) {
-      Promise.reject(result.errors);
-    }
     const categories = result.data.categoriesGroup.group
-    categories.forEach(category => {
+    categories.forEach((category) => {
       createPage({
-        path: `/categories/${_.kebabCase(category.fieldValue)}/`,
+        path: category.fieldValue + "/",
         component: categoryTemplate,
         context: {
-          category: category.fieldValue,
+          category: category.fieldValue
         },
       })
     })
   });
-  // return Promise.all([blogPost, newsPost]);
-  return Promise.all([blogPost, tagsGroup, categoriesGroup]);
+  return Promise.all([blogPost,]);
 };
 
