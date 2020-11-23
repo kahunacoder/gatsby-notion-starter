@@ -10,7 +10,6 @@ class BlogIndex extends React.Component {
   render () {
     const { data: { allPosts } } = this.props
     const { data: { site } } = this.props
-    console.log(site.siteTitle)
     return (
       <Layout location={this.props.location} title={site.siteMetadata.title}>
         <SEO title="All posts" />
@@ -24,6 +23,7 @@ class BlogIndex extends React.Component {
 }
 
 export default BlogIndex
+
 export const query = graphql`
   query {
     site {
@@ -31,21 +31,14 @@ export const query = graphql`
         title
       }
     }
-    allPosts(limit: 2000, filter: { status: {eq: "published"}, content_type: {eq: "article"}}) {
-      group(field: category) {
-        fieldValue
-      }
-      edges {
-        node {
-          slug
-          title
-          url
-          category
-        }
-      }
+    allPosts(
+      limit: 2000,
+      filter: { status: {eq: "published"}, content_type: {eq: "article"}},
+      sort: { fields: [publish_date___startDate], order: DESC }
+    ) {
       nodes {
         title
-        category
+        section
         tags
         desc
         content_type

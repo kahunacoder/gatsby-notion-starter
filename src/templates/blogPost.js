@@ -15,13 +15,13 @@ import findIndex from "lodash/findIndex"
 class BlogPostTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { posts: { title, category, tags, publish_date, html, url, desc, related } } = this.props.data
-    const index = findIndex(related, function (o) { return o.url == url })
-    const previous = index === related.length - 1 ? null : related[index + 1]
-    const next = index === 0 ? null : related[index - 1]
+    const { posts: { title, section, tags, publish_date, html, url, desc, toc, read_time } } = this.props.data
+    const index = findIndex(toc, function (o) { return o.url === url })
+    const previous = index === toc.length - 1 ? null : toc[index + 1]
+    const next = index === 0 ? null : toc[index - 1]
 
     return (
-      <Layout location={this.props.location} title={siteTitle} category={category}>
+      <Layout location={this.props.location} title={siteTitle} section={section}>
         <SEO
           title={title}
           description={desc}
@@ -32,7 +32,7 @@ class BlogPostTemplate extends React.Component {
               {title}
             </h1>
             <p className="text-sm leading-loose mb-8 ">
-              Published: {publish_date.startDate} in:
+              <strong>Published:</strong> {publish_date.startDate} <strong>Read Time:</strong> ~{read_time} mins
               <Tags listOfTags={tags} />
             </p>
           </header>
@@ -64,15 +64,19 @@ export const query = graphql`
       html
       title
       tags
-      category
+      section
+      read_time
       publish_date{
         startDate(formatString: "MMMM Do YYYY", fromNow: false)
       }
       url
-      related{
+      toc{
         title
-        category
+        section
         url
+        publish_date{
+          startDate(formatString: "MMMM Do YYYY", fromNow: false)
+        }
       }
     }
   }

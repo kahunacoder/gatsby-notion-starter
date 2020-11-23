@@ -3,10 +3,10 @@ import { Link } from "gatsby"
 import kebabCase from "lodash/kebabCase"
 import capitalize from "lodash/capitalize"
 
-import { rhythm, scale } from "../utils/typography"
+// import { rhythm, scale } from "../utils/typography"
 class Layout extends React.Component {
   render () {
-    const { location, title, children, category } = this.props
+    const { location, title, children, section } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     let header
     let breadcrumbs
@@ -33,9 +33,9 @@ class Layout extends React.Component {
         <p className="text-sm leading-loose mb-8 ">
           <Link
             className="text-blue-600"
-            to={`/${kebabCase(category)}/`}
+            to={`/${kebabCase(section)}/`}
           >
-            {capitalize(category)}
+            {capitalize(section)}
           </Link>
         </p>)
     }

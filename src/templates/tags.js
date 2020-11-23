@@ -47,7 +47,7 @@ export const pageQuery = graphql`
       totalCount
       blogPosts: nodes {
         title
-        category
+        section
         tags
         desc
         content_type
@@ -63,11 +63,3 @@ export const pageQuery = graphql`
     }
   }
 `
-// allPosts(
-//       limit: 2000
-//       sort: { fields: [publish_date___startDate], order: DESC }
-//       filter: {  tags: { in: [$tag] } }
-//     ) {
-//       totalCount
-//       }
-//     }

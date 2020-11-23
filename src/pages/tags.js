@@ -6,13 +6,15 @@ import SEO from "../components/seo"
 
 import capitalize from "lodash/capitalize"
 import kebabCase from "lodash/kebabCase"
+import orderBy from "lodash/orderBy"
 
 class TagsPage extends React.Component {
   render () {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const pageTitle = "Tags"
-    const tags = data.tagsGroup.group
+    let tags = data.tagsGroup.group
+    tags = orderBy(tags, ['totalCount'], ['desc']);
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -42,14 +44,17 @@ export const pageQuery = graphql`
         title
       }
     }
-    tagsGroup: allPosts(limit: 2000) {
+    tagsGroup: allPosts(
+      limit: 2000
+    )
+    {
       group(field: tags) {
         fieldValue
         totalCount
         nodes {
           title
           url
-          category
+          section
         }
       }
     }

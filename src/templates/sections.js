@@ -6,33 +6,33 @@ import SEO from "../components/seo"
 import PostItem from "../components/postItem"
 import capitalize from "lodash/capitalize"
 
-class CategoriesTemplate extends React.Component {
+class SectionsTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
     const { blogPosts, totalCount } = this.props.data.allPosts
-    const currentCategory = this.props.pageContext.category
+    const currentSection = this.props.pageContext.section
     const postsCounter = `${totalCount} Article${totalCount === 1 ? "" : "s"
-      } in the "${currentCategory}" section`
+      } in the "${currentSection}" section`
 
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={currentCategory} />
-        <h1 className="text-4xl font-sans font-black mt-8 mb-0">{capitalize(currentCategory)}</h1>
+        <SEO title={currentSection} />
+        <h1 className="text-4xl font-sans font-black mt-8 mb-0">{capitalize(currentSection)}</h1>
         <p className="text-sm leading-loose mb-0 ">{postsCounter}</p>
         {
           blogPosts.map(node => <PostItem data={node} />)
         }
-        <Link to="/categories">View all categories</Link>
+        <Link to="/sections">View all sections</Link>
       </Layout>
     )
   }
 }
 
-export default CategoriesTemplate
+export default SectionsTemplate
 
 export const pageQuery = graphql`
-  query($category: String) {
+  query($section: String) {
     site {
       siteMetadata {
         title
@@ -40,13 +40,13 @@ export const pageQuery = graphql`
     }
     allPosts(
       sort: { fields: [publish_date___startDate], order: DESC }
-      filter: {  category: { in: [$category] } }
+      filter: {  section: { in: [$section] } }
       )
       {
       totalCount
       blogPosts: nodes {
         title
-        category
+        section
         tags
         desc
         content_type

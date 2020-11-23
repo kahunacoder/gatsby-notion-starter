@@ -12,7 +12,7 @@ const Tags = props => {
   return (
     <p>
       <small>
-        Tags:{" "}
+        <strong>Tags:</strong>{" "}
         {props.listOfTags.map((tag, i) => [
           i > 0 && ", ",
           <span>#<Link to={`/tags/${kebabCase(tag)}/`} key={i}>{tag}</Link></span>
