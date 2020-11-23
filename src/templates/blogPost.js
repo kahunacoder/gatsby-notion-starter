@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, graphql } from "gatsby"
 import Layout from '../components/layout'
-import { parseImageUrl } from '@conradlin/notabase/src/utils'
+// import { parseImageUrl } from '@conradlin/notabase/src/utils'
 
 import Bio from "../components/bio"
 import SEO from "../components/seo"
@@ -40,6 +40,7 @@ class BlogPostTemplate extends React.Component {
             </p>
           </header>
           <section
+            className="markdown"
             dangerouslySetInnerHTML={{ __html: html }}
           />
           <hr className="h-px mb-8" />

@@ -14,10 +14,19 @@ export default ({ data }) => {
             className="text-blue-600 shadow-none"
             to={"/" + category + "/" + url}
           >
+            <img
+              alt={`${title} cover image`}
+              style={{ width: '100%' }}
+              src={coverimageURL}
+            />
             {title}
           </Link>
         </h3>
-        <small>{"/" + category + "/" + url}</small>
+        <div style={{ color: "grey" }}>
+          Published: {publish_date.startDate}
+          <br></br>Read Time: {read_time} mins
+          <br></br>Tags: {tags && tags.join(', ')}
+        </div>
       </header>
       <section>
         <p

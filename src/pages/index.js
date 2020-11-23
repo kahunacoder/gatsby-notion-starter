@@ -13,8 +13,9 @@ class BlogIndex extends React.Component {
   render () {
     const { data: { allPosts } } = this.props
     const { data: { site } } = this.props
+    console.log(site.siteTitle)
     return (
-      <Layout location={this.props.location} title={site.siteTitle}>
+      <Layout location={this.props.location} title={site.siteMetadata.title}>
         <SEO title="All posts" />
         <Bio />
         {
