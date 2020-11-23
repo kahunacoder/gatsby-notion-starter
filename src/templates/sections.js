@@ -40,7 +40,7 @@ export const pageQuery = graphql`
     }
     allPosts(
       sort: { fields: [publish_date___startDate], order: DESC }
-      filter: {  section: { in: [$section] } }
+      filter: {  section: { in: [$section] } status: {eq: "published"}, content_type: {eq: "article"}}
       )
       {
       totalCount

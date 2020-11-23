@@ -28,11 +28,12 @@ class BlogPostTemplate extends React.Component {
         />
         <article>
           <header>
-            <h1 className="text-5xl font-black mt-8 mb-0">
+            <h1 className="text-5xl font-black mt-4 mb-0">
               {title}
             </h1>
-            <p className="text-sm leading-loose mb-8 ">
-              <strong>Published:</strong> {publish_date.startDate} <strong>Read Time:</strong> ~{read_time} mins
+            <p className="text-sm leading-loose mb-4 ">
+              <strong>Published:</strong> {publish_date.startDate}
+              <span className="float-right text-right">Read Time: ~{read_time} mins</span>
               <Tags listOfTags={tags} />
             </p>
           </header>

@@ -11,13 +11,11 @@ const Tags = props => {
   // Display a list of tags for the current blog post.
   return (
     <p>
-      <small>
-        <strong>Tags:</strong>{" "}
-        {props.listOfTags.map((tag, i) => [
-          i > 0 && ", ",
-          <span>#<Link to={`/tags/${kebabCase(tag)}/`} key={i}>{tag}</Link></span>
-        ])}
-      </small>
+      <span>Tags:</span>{" "}
+      {props.listOfTags.map((tag, i) => [
+        i > 0 && ", ",
+        <span>#<Link to={`/tags/${kebabCase(tag)}/`} key={i}>{tag}</Link></span>
+      ])}
     </p>
   )
 }

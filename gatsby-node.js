@@ -70,12 +70,18 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      sectionsGroup: allPosts(limit: 2000) {
+      sectionsGroup: allPosts(
+        limit: 2000
+        filter: {status: {eq: "published"}, content_type: {eq: "article"}}
+        ) {
         group(field: section) {
           fieldValue
         }
       }
-      tagsGroup: allPosts(limit: 2000) {
+      tagsGroup: allPosts(
+        limit: 2000
+        filter: {status: {eq: "published"}, content_type: {eq: "article"}}
+        ) {
         group(field: tags) {
           fieldValue
         }
