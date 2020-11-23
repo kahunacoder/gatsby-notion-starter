@@ -1,10 +1,10 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import capitalize from "lodash/capitalize"
 import kebabCase from "lodash/kebabCase"
 
 class TagsPage extends React.Component {
@@ -17,15 +17,13 @@ class TagsPage extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={pageTitle} />
-        <Bio />
-
-        <h1>{pageTitle}</h1>
-
+        <h2 className="text-4xl font-sans font-black mt-0 mb-0">{pageTitle}</h2>
+        <hr className="h-px mb-4 mt-4" />
         <ul>
           {tags.map(tag => (
             <li key={tag.fieldValue}>
-              <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-                {tag.fieldValue} ({tag.totalCount})
+              <Link to={"/tags/" + kebabCase(tag.fieldValue)}>
+                {capitalize(tag.fieldValue)} ({tag.totalCount})
               </Link>
             </li>
           ))}

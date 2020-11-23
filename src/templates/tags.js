@@ -6,33 +6,34 @@ import SEO from "../components/seo"
 import PostItem from "../components/postItem"
 import capitalize from "lodash/capitalize"
 
-class CategoriesTemplate extends React.Component {
+class TagsTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
     const { blogPosts, totalCount } = this.props.data.allPosts
-    const currentCategory = this.props.pageContext.category
-    const postsCounter = `${totalCount} Article${totalCount === 1 ? "" : "s"
-      } in the "${currentCategory}" section`
+    const currentTag = this.props.pageContext.tags
+    const postsCounter = `${totalCount} post${totalCount === 1 ? "" : "s"
+      } tagged with "${currentTag}"`
 
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={currentCategory} />
-        <h1 className="text-4xl font-sans font-black mt-8 mb-0">{capitalize(currentCategory)}</h1>
+        <SEO title={currentTag} />
+        <h1 className="text-4xl font-sans font-black mt-8 mb-0">#{capitalize(currentTag)}</h1>
         <p className="text-sm leading-loose mb-0 ">{postsCounter}</p>
         {
           blogPosts.map(node => <PostItem data={node} />)
         }
-        <Link to="/categories">View all categories</Link>
+
+        <Link to="/tags">View all tags</Link>
       </Layout>
     )
   }
 }
 
-export default CategoriesTemplate
+export default TagsTemplate
 
 export const pageQuery = graphql`
-  query($category: String) {
+  query($tags: String) {
     site {
       siteMetadata {
         title
@@ -40,7 +41,7 @@ export const pageQuery = graphql`
     }
     allPosts(
       sort: { fields: [publish_date___startDate], order: DESC }
-      filter: {  category: { in: [$category] } }
+      filter: {  tags: { in: [$tags] } }
       )
       {
       totalCount
@@ -62,3 +63,11 @@ export const pageQuery = graphql`
     }
   }
 `
+// allPosts(
+//       limit: 2000
+//       sort: { fields: [publish_date___startDate], order: DESC }
+//       filter: {  tags: { in: [$tag] } }
+//     ) {
+//       totalCount
+//       }
+//     }

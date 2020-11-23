@@ -1,4 +1,5 @@
 const path = require(`path`)
+const kebabCase = require("lodash/kebabCase")
 
 //Hook into the createSchemaCustomization API
 //This hook runs after all our nodes have been created
@@ -65,6 +66,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const categoryTemplate = path.resolve(`./src/templates/categories.js`)
+  const tagsTemplate = path.resolve(`./src/templates/tags.js`)
   const blogTemplate = path.resolve(`./src/templates/blogPost.js`)
 
   const blogPost = await graphql(`
@@ -86,6 +88,11 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       categoriesGroup: allPosts(limit: 2000) {
         group(field: category) {
+          fieldValue
+        }
+      }
+      tagsGroup: allPosts(limit: 2000) {
+        group(field: tags) {
           fieldValue
         }
       }
@@ -117,7 +124,17 @@ exports.createPages = async ({ graphql, actions }) => {
           category: category.fieldValue
         },
       })
-    })
+    });
+    const tags = result.data.tagsGroup.group
+    tags.forEach((tag) => {
+      createPage({
+        path: "/tags/" + kebabCase(tag.fieldValue) + "/",
+        component: tagsTemplate,
+        context: {
+          tags: tag.fieldValue
+        },
+      })
+    });
   });
   return Promise.all([blogPost,]);
 };

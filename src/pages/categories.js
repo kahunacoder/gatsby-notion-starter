@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import capitalize from "lodash/capitalize"
@@ -18,9 +17,8 @@ class CatPage extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={pageTitle} />
-        <Bio />
 
-        <h2 className="text-5xl font-sans font-black mt-0 mb-0">{pageTitle}</h2>
+        <h2 className="text-4xl font-sans font-black mt-0 mb-0">{pageTitle}</h2>
         <hr className="h-px mb-4 mt-4" />
         <ul>
           {categories.map(category => (
