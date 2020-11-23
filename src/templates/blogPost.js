@@ -6,16 +6,18 @@ import { parseImageUrl } from '@conradlin/notabase/src/utils'
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 import NotionNav from "../components/NotionNav"
+import findIndex from "lodash/findIndex"
 
 import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { posts: { title, tags, publish_date, html, url, slug, desc, color } } = this.props.data
+    const { posts: { title, category, tags, publish_date, html, url, slug, desc, color, related } } = this.props.data
+    const index = findIndex(related, function (o) { return o.url == url })
+    const previous = index === related.length - 1 ? null : related[index + 1]
+    const next = index === 0 ? null : related[index - 1]
 
-    // const catNav = this.props.pageContext
-    // console.log(catNav)
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
@@ -45,7 +47,7 @@ class BlogPostTemplate extends React.Component {
             <Bio />
           </footer>
         </article>
-        <NotionNav pageNav={this.props.pageContext.category} />
+        <NotionNav pageNav={{ previous, next }} />
       </Layout>
     )
   }
@@ -64,6 +66,7 @@ export const query = graphql`
       html
       title
       tags
+      category
       publish_date{
         startDate(formatString: "YYYY-MMM-DD", fromNow: false)
       }
@@ -71,6 +74,11 @@ export const query = graphql`
       desc
       color
       cover_image
+      related{
+        title
+        category
+        url
+      }
     }
   }
 `

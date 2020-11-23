@@ -5,7 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import kebabCase from "lodash/kebabCase"
+// import kebabCase from "lodash/kebabCase"
 
 class CatPage extends React.Component {
   render () {
@@ -24,7 +24,7 @@ class CatPage extends React.Component {
         <ul>
           {categories.map(category => (
             <li key={category.fieldValue}>
-              <Link to={`/categories/${kebabCase(category.fieldValue)}/`}>
+              <Link to={`/$(category.fieldValue)/`}>
                 {category.fieldValue} ({category.totalCount})
               </Link>
             </li>

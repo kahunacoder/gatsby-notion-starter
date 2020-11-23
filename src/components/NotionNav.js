@@ -2,8 +2,6 @@ import React from "react"
 import { Link } from "gatsby"
 
 // import { rhythm, scale } from "../utils/typography"
-
-
 class NotionNav extends React.Component {
   render () {
     const { previous, next } = this.props.pageNav
