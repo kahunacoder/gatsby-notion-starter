@@ -7,6 +7,7 @@ import Bio from "../components/bio"
 import SEO from "../components/seo"
 import NotionNav from "../components/NotionNav"
 import findIndex from "lodash/findIndex"
+import capitalize from "lodash/capitalize"
 
 import { rhythm, scale } from "../utils/typography"
 
@@ -19,7 +20,7 @@ class BlogPostTemplate extends React.Component {
     const next = index === 0 ? null : related[index - 1]
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} category={category}>
         <SEO
           title={title}
           description={desc}
@@ -30,12 +31,12 @@ class BlogPostTemplate extends React.Component {
               {title}
             </h1>
             <p className="text-sm leading-loose mb-8 ">
-              {publish_date.startDate} #
+              Published: {publish_date.startDate} in:
               <Link
                 className="text-blue-600"
-                to={"/posts/" + tags}
+                to={"/" + category}
               >
-                {tags}
+                {category}
               </Link>
             </p>
           </header>

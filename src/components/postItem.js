@@ -9,7 +9,7 @@ export default ({ data }) => {
   return (
     <article key={category + "/" + url}>
       <header>
-        <h3 className="text-2xl font-black mt-16 mb-2">
+        <h3 className="text-2xl font-black mt-8 mb-2">
           <Link
             className="text-blue-600 shadow-none"
             to={"/" + category + "/" + url}

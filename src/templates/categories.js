@@ -5,27 +5,26 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostItem from "../components/postItem"
+import capitalize from "lodash/capitalize"
 
 class CategoriesTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
     const { blogPosts, totalCount } = this.props.data.allPosts
     const currentCategory = this.props.pageContext.category
-    const postsCounter = `${totalCount} post${totalCount === 1 ? "" : "s"
-      } tagged with "${currentCategory}"`
+    const postsCounter = `${totalCount} Article${totalCount === 1 ? "" : "s"
+      } in the "${currentCategory}" section`
 
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={currentCategory} />
         <Bio />
-        <h1>Category: {currentCategory}</h1>
-        <p>{postsCounter}</p>
-
+        <h1 className="text-5xl font-sans font-black mt-8 mb-0">{capitalize(currentCategory)}</h1>
+        <p className="text-sm leading-loose mb-0 ">{postsCounter}</p>
         {
           blogPosts.map(node => <PostItem data={node} />)
         }
-
         <Link to="/categories">View all categories</Link>
       </Layout>
     )

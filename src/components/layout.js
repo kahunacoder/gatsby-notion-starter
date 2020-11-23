@@ -1,12 +1,15 @@
 import React from "react"
 import { Link } from "gatsby"
+import kebabCase from "lodash/kebabCase"
+import capitalize from "lodash/capitalize"
 
 import { rhythm, scale } from "../utils/typography"
 class Layout extends React.Component {
   render () {
-    const { location, title, children } = this.props
+    const { location, title, children, category } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     let header
+    let breadcrumbs
 
     if (location.pathname === rootPath) {
       header = (
@@ -25,10 +28,21 @@ class Layout extends React.Component {
         </h3>
       )
     }
+    if (location.pathname !== rootPath) {
+      breadcrumbs = (
+        <p className="text-sm leading-loose mb-8 ">
+          <Link
+            className="text-blue-600"
+            to={`/${kebabCase(category)}/`}
+          >
+            {capitalize(category)}
+          </Link>
+        </p>)
+    }
     return (
       <div className="max-w-2xl mx-auto px-5 py-10">
         <header>{header}</header>
-        <main>{children}</main>
+        <main>{breadcrumbs}{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

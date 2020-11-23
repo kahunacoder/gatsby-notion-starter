@@ -6,9 +6,6 @@ import Layout from '../components/layout'
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 // import { rhythm } from "../utils/typography"
-
-
-
 class BlogIndex extends React.Component {
   render () {
     const { data: { allPosts } } = this.props
