@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 import kebabCase from "lodash/kebabCase"
 import capitalize from "lodash/capitalize"
+import DarkToggle from './DarkToggle';
+import PropTypes from 'prop-types';
 
 // import { rhythm, scale } from "../utils/typography"
 class Layout extends React.Component {
@@ -13,19 +15,25 @@ class Layout extends React.Component {
 
     if (location.pathname === rootPath) {
       header = (
-        <h1 className="text-6xl font-black font-sans mb-10 mt-0">
-          <Link className="shadow-none" to={`/`}>
-            {title}
-          </Link>
-        </h1>
+        <div>
+          <h1 className="text-6xl font-black font-sans mb-10 mt-0">
+            <Link className="shadow-none" to={`/`}>
+              {title}
+            </Link>
+            <DarkToggle />
+          </h1>
+        </div>
       )
     } else {
       header = (
-        <h3 className="text-2xl font-sans font-black mt-0">
-          <Link className="shadow-none" to={`/`}>
-            {title}
-          </Link>
-        </h3>
+        <div>
+          <h3 className="text-2xl font-sans font-black mt-0">
+            <Link className="shadow-none" to={`/`}>
+              {title}
+            </Link>
+            <DarkToggle />
+          </h3>
+        </div>
       )
     }
     if (location.pathname !== rootPath) {
@@ -54,5 +62,9 @@ class Layout extends React.Component {
     )
   }
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Layout

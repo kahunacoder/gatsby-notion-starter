@@ -9,7 +9,16 @@ import "typeface-merriweather"
 import "tailwindcss/base.css"
 import "tailwindcss/components.css"
 import "tailwindcss/utilities.css"
+// import "tailwindcss/colors.css"
 
 // Markdown formatting, uses Tailwind @apply primitive to apply Tailwind's utility classes to
 // elements created by the Markdown parser
 import "./src/markdown.css"
+
+import React from 'react';
+
+import App from './src/components/App';
+
+export const wrapRootElement = ({ element }) => {
+  return <App>{element}</App>;
+};
