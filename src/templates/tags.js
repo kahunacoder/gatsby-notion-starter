@@ -18,7 +18,7 @@ class TagsTemplate extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={currentTag} />
-        <h1 className="text-4xl font-sans font-black mt-8 mb-0">#{capitalize(currentTag)}</h1>
+        <h1 className="text-4xl mt-8 mb-0">#{capitalize(currentTag)}</h1>
         <p className="text-sm leading-loose mb-0 ">{postsCounter}</p>
         {
           blogPosts.map(node => <PostItem data={node} />)

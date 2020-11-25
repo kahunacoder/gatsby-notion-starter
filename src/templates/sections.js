@@ -18,7 +18,7 @@ class SectionsTemplate extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={currentSection} />
-        <h1 className="text-4xl font-sans font-black mt-8 mb-0">{capitalize(currentSection)}</h1>
+        <h1 className="text-4xl mt-8 mb-0">{capitalize(currentSection)}</h1>
         <p className="text-sm leading-loose mb-0 ">{postsCounter}</p>
         {
           blogPosts.map(node => <PostItem data={node} />)

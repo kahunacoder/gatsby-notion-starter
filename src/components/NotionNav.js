@@ -13,7 +13,7 @@ class NotionNav extends React.Component {
           <li>
             {previous && (
               <Link
-                className="text-blue-600"
+                className="text-blue-txt"
                 to={"/" + previous.section + "/" + previous.url}
                 rel="prev"
               >
@@ -24,7 +24,7 @@ class NotionNav extends React.Component {
           <li>
             {next && (
               <Link
-                className="text-blue-600"
+                className="text-blue-txt"
                 to={"/" + next.section + "/" + next.url}
                 rel="next"
               >

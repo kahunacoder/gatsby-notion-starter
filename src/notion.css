@@ -1,0 +1,52 @@
+/* Notion Color Table */
+
+.theme-light {
+  --text-DEFAULT: hsl(45, 8%, 20%);
+  --text-gray: hsl(45, 2%, 60%);
+  --text-orange:hsl(30, 89%, 45%);
+  --text-red: hsl(0, 72%, 56%);
+  --text-purple:hsl(264, 44%, 45%);
+  --text-brown: hsl(19, 27%, 31%);
+  --text-pink: hsl(324, 74%, 39%);
+  --text-yellow: hsl(46, 99%, 44%);
+  --text-blue: hsl(198, 87%, 32%);
+  --text-green: hsl(172, 78%, 27%);
+/* backgrounds */
+  --bg-DEFAULT: hsl(0, 0%, 100%);
+  --bg-gray: hsl(210, 5%, 93%);
+  --bg-orange: hsl(29, 74%, 92%);
+  --bg-red: hsl(0, 74%, 94%);
+  --bg-purple: hsl(266, 35%, 92%);
+  --bg-brown: hsl(20, 12%, 90%);
+  --bg-pink: hsl(326, 49%, 92%);
+  --bg-yellow: hsl(45, 80%, 92%);
+  --bg-blue: hsl(198, 42%, 91%);;
+  --bg-green: hsl(169, 31%, 90%);;
+}
+.theme-dark {
+  --text-DEFAULT: hsl(0, 0%, 90%);
+  --text-gray: hsla(195, 2%, 60%, 0.95);
+  --text-orange:hsl(30, 100%, 63%);
+  --text-red: hsl(4, 100%, 71%);
+  --text-purple:hsl(265, 57%, 64%);
+  --text-brown: hsl(18, 19%, 48%);
+  --text-pink: hsl(328, 71%, 61%);
+  --text-yellow: hsl(48, 100%, 64%);
+  --text-blue: hsl(203, 53%, 56%);
+  --text-green: hsl(169, 38%, 49%);
+/* backgrounds */
+  --bg-DEFAULT: hsl(203, 8%, 20%);
+  --bg-gray: hsl(200, 6%, 29%);
+  --bg-orange: hsl(31, 21%, 29%);
+  --bg-red: hsl(0, 16%, 30%);
+  --bg-purple: hsl(252, 16%, 29%);
+  --bg-brown: hsl(0, 2%, 26%);
+  --bg-pink: hsl(318, 17%, 28%);
+  --bg-yellow: hsl(54, 20%, 29%);
+  --bg-blue: hsl(202, 22%, 27%);
+  --bg-green: hsl(177, 18%, 25%);
+
+  /* --accent: #fc7753; */
+}
+
+

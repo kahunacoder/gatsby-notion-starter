@@ -13,12 +13,25 @@ import "tailwindcss/utilities.css"
 
 // Markdown formatting, uses Tailwind @apply primitive to apply Tailwind's utility classes to
 // elements created by the Markdown parser
-import "./src/markdown.css"
+import "./src/notion.css"
+import "./src/toggle.css"
+
 
 import React from 'react';
-
-import App from './src/components/App';
-
+import ThemeContextProvider from './src/context/themeContext';
 export const wrapRootElement = ({ element }) => {
-  return <App>{element}</App>;
+  return <ThemeContextProvider>{element}</ThemeContextProvider>;
 };
+
+
+
+
+
+
+// import React from 'react';
+
+// import App from './src/components/App';
+
+// export const wrapRootElement = ({ element }) => {
+//   return <App>{element}</App>;
+// };

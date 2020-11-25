@@ -19,7 +19,7 @@ class TagsPage extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={pageTitle} />
-        <h2 className="text-4xl font-sans font-black mt-0 mb-0">{pageTitle}</h2>
+        <h2 className="text-4xl mt-0 mb-0">{pageTitle}</h2>
         <hr className="h-px mb-4 mt-4" />
         <ul>
           {tags.map(tag => (
