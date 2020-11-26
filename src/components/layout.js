@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
   //   breadcrumbs = (
   //     <p className="text-sm leading-loose mb-8">
   //       <Link
-  //         className="text-blue-txt"
+  //         className="text-notion-blue-txt"
   //         to={`/${kebabCase(section)}/`}
   //       >
   //         {capitalize(section)}
@@ -61,7 +61,7 @@ const Layout = ({ children }) => {
   return (
     <div
       className={`${theme === 'light' ? 'theme-light' : 'theme-dark'
-        } bg-DEFAULT-bkg text-DEFAULT-txt transition-all duration-300 m-0 px-0 py-5 min-h-screen`}>
+        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 px-0 py-5 min-h-screen`}>
 
       <div className="float-right text-alignright px-5 py-5">
         <label htmlFor="theme-toggle" className="text-accent">
@@ -120,7 +120,7 @@ const Layout = ({ children }) => {
 //       breadcrumbs = (
 //         <p className="text-sm leading-loose mb-8">
 //           <Link
-//             className="text-blue-txt"
+//             className="text-notion-blue-txt"
 //             to={`/${kebabCase(section)}/`}
 //           >
 //             {capitalize(section)}
@@ -134,7 +134,7 @@ const Layout = ({ children }) => {
 //         <footer>
 //           © {new Date().getFullYear()}, Built with
 //           {` `}
-//           <a className="text-blue-txt" href="https://www.gatsbyjs.org">
+//           <a className="text-notion-blue-txt" href="https://www.gatsbyjs.org">
 //             Gatsby
 //           </a>
 //         </footer>

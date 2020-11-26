@@ -48,7 +48,7 @@ const Bio = () => {
         Francisco building useful things.
         {` `}
         <a
-          className="text-blue-txt"
+          className="text-notion-blue-txt"
           href={`https://twitter.com/${social.twitter}`}
         >
           You should follow him on Twitter

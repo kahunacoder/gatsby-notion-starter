@@ -1,6 +1,8 @@
+
 const puppeteer = require('puppeteer');
 
 process.setMaxListeners(0)
+
 const getPageHtml = async (url) => {
     const puppeteer_options = { headless: true, args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage'] }
     if (process.env.CHROME_BIN !== '') {
@@ -80,7 +82,122 @@ const getPageHtml = async (url) => {
         let contenteditable = content.querySelectorAll("div[contenteditable=true]")
         contenteditable.forEach(i => {
             i.setAttribute("contenteditable", false)
+            i.setAttribute("notion", true)
+            // i.className += "text-blue-txt ";
         })
+        const colors = {
+            "text": [
+                {
+                    "styleColor": "rgb(55, 53, 47)",
+                    "cssClass": "text-notion-DEFAULT-txt"
+                },
+                {
+                    "styleColor": "rgb(155, 154, 151)",
+                    "cssClass": "text-notion-gray-txt"
+                },
+                {
+                    "styleColor": "rgb(217, 115, 13)",
+                    "cssClass": "text-notion-orange-txt"
+                },
+                {
+                    "styleColor": "rgb(224, 62, 62)",
+                    "cssClass": "text-notion-red-txt"
+                },
+                {
+                    "styleColor": "rgb(105, 64, 165)",
+                    "cssClass": "text-notion-purple-txt"
+                },
+                {
+                    "styleColor": "rgb(100, 71, 58)",
+                    "cssClass": "text-notion-brown-txt"
+                },
+                {
+                    "styleColor": "rgb(173, 26, 114)",
+                    "cssClass": "text-notion-pink-txt"
+                },
+                {
+                    "styleColor": "rgb(223, 171, 1)",
+                    "cssClass": "text-notion-yellow-txt"
+                },
+                {
+                    "styleColor": "rgb(11, 110, 153)",
+                    "cssClass": "text-notion-blue-txt"
+                },
+                {
+                    "styleColor": "rgb(15, 123, 108)",
+                    "cssClass": "text-notion-green-txt"
+                }
+            ],
+            "background": [
+                {
+                    "styleColor": "rgb(255, 255, 255)",
+                    "cssClass": "bg-notion-DEFAULT-bkg"
+                },
+                {
+                    "styleColor": "rgb(235, 236, 237)",
+                    "cssClass": "bg-notion-gray-bkg"
+                },
+                {
+                    "styleColor": "rgb(250, 235, 221)",
+                    "cssClass": "bg-notion-orange-bkg"
+                },
+                {
+                    "styleColor": "rgb(251, 228, 228)",
+                    "cssClass": "bg-notion-red-bkg"
+                },
+                {
+                    "styleColor": "rgb(234, 228, 242)",
+                    "cssClass": "bg-notion-purple-bkg"
+                },
+                {
+                    "styleColor": "rgb(233, 229, 227)",
+                    "cssClass": "bg-notion-brown-bkg"
+                },
+                {
+                    "styleColor": "rgb(244, 223, 235)",
+                    "cssClass": "bg-notion-pink-bkg"
+                },
+                {
+                    "styleColor": "rgb(251, 243, 219)",
+                    "cssClass": "bg-notion-yellow-bkg"
+                },
+                {
+                    "styleColor": "rgb(221, 235, 241)",
+                    "cssClass": "bg-notion-blue-bkg"
+                },
+                {
+                    "styleColor": "rgb(221, 237, 234)",
+                    "cssClass": "bg-notion-green-bkg"
+                }
+            ]
+        }
+
+        let hasBackgroundColor = content.querySelectorAll("*")
+        hasBackgroundColor.forEach(i => {
+            let backgroundsToClasses = colors.background.map(item => {
+                if (i.style.background == item.styleColor) {
+                    i.style.removeProperty("background");
+                    return item.cssClass
+                }
+            }).join('')
+            if (backgroundsToClasses) {
+                i.classList.add(backgroundsToClasses);
+            }
+        })
+
+        let hasTextColor = content.querySelectorAll("*")
+        hasTextColor.forEach(i => {
+            let colorsToClasses = colors.text.map(item => {
+                if (i.style.color == item.styleColor) {
+                    i.style.removeProperty("color");
+                    return item.cssClass
+                }
+            }).join('')
+            if (colorsToClasses) {
+                i.classList.add(colorsToClasses);
+            }
+        })
+
         if (content) {
             return content.innerHTML
         }

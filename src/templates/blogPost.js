@@ -28,7 +28,7 @@ class BlogPostTemplate extends React.Component {
         />
         <article>
           <header>
-            <h1 className="text-5xl text-DEFAULT-txt mt-4 mb-0">
+            <h1 className="text-5xl text-notion-DEFAULT-txt mt-4 mb-0">
               {title}
             </h1>
             <p className="text-sm leading-loose mb-4 ">
@@ -38,7 +38,6 @@ class BlogPostTemplate extends React.Component {
             </p>
           </header>
           <section
-            className="markdown"
             dangerouslySetInnerHTML={{ __html: html }}
           />
           <hr className="h-px mb-8" />

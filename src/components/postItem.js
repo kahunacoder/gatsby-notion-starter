@@ -12,7 +12,7 @@ export default ({ data }) => {
       <header>
         <h3 className="text-2xl font-black mt-8 mb-2">
           <Link
-            className="text-blue-txt shadow-none"
+            className="text-notion-blue-txt shadow-none"
             to={"/" + section + "/" + url}
           >
             <img
@@ -23,7 +23,7 @@ export default ({ data }) => {
             {title}
           </Link>
         </h3>
-        <div className="text-gray-txt shadow-none">
+        <div className="text-notion-gray-txt shadow-none">
           Published: {publish_date.startDate}
           <span className="float-right text-right">Read Time: ~{read_time} mins</span>
           <p><Tags listOfTags={tags} /></p>
