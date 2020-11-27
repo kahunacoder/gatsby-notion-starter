@@ -85,6 +85,8 @@ const getPageHtml = async (url) => {
             i.setAttribute("notion", true)
             // i.className += "text-blue-txt ";
         })
+
+        // Notion light theme color values and replacement classes
         const colors = {
             "text": [
                 {
@@ -92,7 +94,7 @@ const getPageHtml = async (url) => {
                     "cssClass": "text-notion-DEFAULT-txt"
                 },
                 {
-                    "styleColor": "rgb(155, 154, 151)",
+                    "styleColor": "rgba(55, 53, 47, 0.6)",
                     "cssClass": "text-notion-gray-txt"
                 },
                 {
@@ -158,7 +160,7 @@ const getPageHtml = async (url) => {
                     "cssClass": "bg-notion-pink-bkg"
                 },
                 {
-                    "styleColor": "rgb(251, 243, 219)",
+                    "styleColor": "rgba(251, 243, 219, 0.3)",
                     "cssClass": "bg-notion-yellow-bkg"
                 },
                 {
@@ -172,8 +174,16 @@ const getPageHtml = async (url) => {
             ]
         }
 
-        let hasBackgroundColor = content.querySelectorAll("*")
-        hasBackgroundColor.forEach(i => {
+        // Loop through all content elements and remove notion color and
+        // background styles and relace with class names.
+
+        let hasColor = content.querySelectorAll("*")
+        hasColor.forEach(i => {
+
+            if (i.style.maxWidth == "608px" || i.style.maxWidth == "800px") {
+                i.style.maxWidth = "1048px";
+            }
+
             let backgroundsToClasses = colors.background.map(item => {
                 if (i.style.background == item.styleColor) {
                     i.style.removeProperty("background");
@@ -183,10 +193,7 @@ const getPageHtml = async (url) => {
             if (backgroundsToClasses) {
                 i.classList.add(backgroundsToClasses);
             }
-        })
 
-        let hasTextColor = content.querySelectorAll("*")
-        hasTextColor.forEach(i => {
             let colorsToClasses = colors.text.map(item => {
                 if (i.style.color == item.styleColor) {
                     i.style.removeProperty("color");

@@ -74,8 +74,8 @@ const Layout = ({ children }) => {
         />
       </div>
 
-      <main className="max-w-2xl mx-auto px-5 py-10 ">{children}</main>
-      <footer className="text-DEFAULT-txt">
+      <main className="max-w-4xl mx-auto px-5 py-10 ">{children}</main>
+      <footer className="max-w-4xl mx-auto px-5 py-10 ">
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
