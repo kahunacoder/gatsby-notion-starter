@@ -14,7 +14,7 @@ import "tailwindcss/utilities.css"
 // Markdown formatting, uses Tailwind @apply primitive to apply Tailwind's utility classes to
 // elements created by the Markdown parser
 import "./src/notion.css"
-import "./src/toggle.css"
+// import "./src/toggle.css"
 
 
 import React from 'react';

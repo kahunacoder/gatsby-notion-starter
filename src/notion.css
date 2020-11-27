@@ -22,6 +22,7 @@
   --bg-notion-yellow: hsl(45, 80%, 92%);
   --bg-notion-blue: hsl(198, 42%, 91%);;
   --bg-notion-green: hsl(169, 31%, 90%);;
+  --bg-notion-code: hsl(45, 20%, 96%);
 }
 .theme-dark {
   --text-notion-DEFAULT: hsl(0, 0%, 90%);
@@ -45,8 +46,120 @@
   --bg-notion-yellow: hsl(54, 20%, 29%);
   --bg-notion-blue: hsl(202, 22%, 27%);
   --bg-notion-green: hsl(177, 18%, 25%);
+  --bg-notion-code: hsl(203, 6%, 26%);
 
   /* --accent: #fc7753; */
 }
 
+.dark-button {
+	 box-sizing: border-box;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 margin-top: -3px;
+}
+ .dark-button:before, .dark-button:after {
+	 box-sizing: border-box;
+}
+ .dark-button label {
+	 position: relative;
+	 display: block;
+	 width: 45px;
+	 height: 25px;
+	 border-radius: 100px;
+	 background-color: #252525;
+	 overflow: hidden;
+	 cursor: pointer;
+}
+ .dark-button label:before, .dark-button label:after {
+	 display: block;
+	 position: absolute;
+	 content: "";
+	 width: 19px;
+	 height: 19px;
+	 border-radius: 50%;
+	 top: 3px;
+	 left: 3px;
+	 transition: 0.4s ease;
+}
+ .dark-button label:before {
+	 background-color:hsl(46, 99%, 44%);
+}
+ .dark-button label:after {
+	 background-color: #252525;
+	 left: -58px;
+	 transform: scale(0.00001);
+}
+ .dark-button input[type="checkbox"] {
+	 display: none;
+}
+ .dark-button input[type="checkbox"]:checked + label:before {
+	 background-color: hsla(195, 2%, 60%, 0.95);;
+	 transform: translateX(20px);
+}
+ .dark-button input[type="checkbox"]:checked + label:after {
+	 transform: translateX(75px) scale(1);
+}
 
+
+/* .dark-button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -3px;
+
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+
+  label {
+    position: relative;
+    display: block;
+    width: 45px;
+    height: 25px;
+    border-radius: 100px;
+    background-color: rgb(37, 37, 37);
+    overflow: hidden;
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      display: block;
+      position: absolute;
+      content: "";
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: 0.4s ease;
+    }
+
+    &:before {
+      background-color: rgb(241, 110, 101);
+    }
+
+    &:after {
+      background-color: rgb(37, 37, 37);
+      left: -58px;
+      transform: scale(0.00001);
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked + label {
+      &:before {
+        background-color: rgb(1, 219, 198);
+        transform: translateX(20px);
+      }
+
+      &:after {
+        transform: translateX(75px) scale(1);
+      }
+    }
+  }
+} */

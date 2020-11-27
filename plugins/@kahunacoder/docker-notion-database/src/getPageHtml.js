@@ -160,7 +160,7 @@ const getPageHtml = async (url) => {
                     "cssClass": "bg-notion-pink-bkg"
                 },
                 {
-                    "styleColor": "rgba(251, 243, 219, 0.3)",
+                    "styleColor": "rgb(251, 243, 219)",
                     "cssClass": "bg-notion-yellow-bkg"
                 },
                 {
@@ -170,6 +170,10 @@ const getPageHtml = async (url) => {
                 {
                     "styleColor": "rgb(221, 237, 234)",
                     "cssClass": "bg-notion-green-bkg"
+                },
+                {
+                    "styleColor": "rgb(247, 246, 243)",
+                    "cssClass": "bg-notion-code-bkg"
                 }
             ]
         }

@@ -31,6 +31,7 @@ module.exports = {
         'notion-yellow-bkg': 'var(--bg-notion-yellow)',
         'notion-blue-bkg': 'var(--bg-notion-blue)',
         'notion-green-bkg': 'var(--bg-notion-green)',
+        'notion-code-bkg': 'var(--bg-notion-code)',
       },
     },
   },
