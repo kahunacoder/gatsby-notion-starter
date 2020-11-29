@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `ElectricTailwind`,
+    title: `ElectricTailwinds`,
     author: `Gary Smith`,
     description: `A blog for my life and electric bike tales and tips.`,
-    siteUrl: `http://electrictailwind.com/`,
+    siteUrl: `http://electrictailwinds.com/`,
     social: {
-      twitter: `electrictailwind`,
+      twitter: `electrictailwinds`,
     },
   },
   plugins: [
@@ -81,5 +81,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-postcss`,
+    {
+      resolve: 'gatsby-background-image-es5',
+      options: {
+        // add your own characters to escape, replacing the default ':/'
+        specialChars: '/:',
+      },
+    },
   ],
 }

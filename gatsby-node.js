@@ -1,5 +1,7 @@
 const path = require(`path`)
 const kebabCase = require("lodash/kebabCase")
+const { createRemoteFileNode } = require("gatsby-source-filesystem")
+const { parseImageUrl } = require("@conradlin/notabase/src/utils")
 
 //Hook into the createSchemaCustomization API
 //This hook runs after all our nodes have been created
@@ -8,10 +10,16 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
   //and modify existing ones
   const { createTypes } = actions
 
+  createTypes(`
+    type posts implements Node {
+      coverImg: File @link(from: "coverImg___NODE")
+    }
+  `)
+
   // Create our schema customizations
   const typeDefs = [
     // Replace "sanity_post" with your _typename of your post type
-    "type posts implements Node { related: [posts] }",
+    "type posts implements Node { toc: [posts] }",
     schema.buildObjectType({
       name: "posts",
       fields: {
@@ -128,3 +136,31 @@ exports.createPages = async ({ graphql, actions }) => {
   return Promise.all([blogPost,]);
 };
 
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode },
+  store,
+  cache,
+  createNodeId,
+}) => {
+  // For all MarkdownRemark nodes that have a featured image url, call createRemoteFileNode
+  if (
+    node.internal.type === "posts" &&
+    node.cover_image !== null &&
+    node.cover_image[0] !== null
+  ) {
+    let coverimageURL = parseImageUrl(node.cover_image[0], 1048, node.slug)
+    let fileNode = await createRemoteFileNode({
+      url: coverimageURL, // string that points to the URL of the image
+      parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+      createNode, // helper function in gatsby-node to generate the node
+      createNodeId, // helper function in gatsby-node to generate the node id
+      cache, // Gatsby's cache
+      store, // Gatsby's Redux store
+    })
+    // if the file was created, attach the new node to the parent node
+    if (fileNode) {
+      node.coverImg___NODE = fileNode.id
+    }
+  }
+}

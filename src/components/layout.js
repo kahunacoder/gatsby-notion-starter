@@ -4,23 +4,40 @@ import kebabCase from "lodash/kebabCase"
 import capitalize from "lodash/capitalize"
 import PropTypes from 'prop-types';
 import { ThemeContext } from '../context/themeContext';
+import BackgroundImage from 'gatsby-background-image-es5'
 
 // import { rhythm, scale } from "../utils/typography"
 
 
 const Layout = (props) => {
-  // class Layout extends React.Component {
-  // render () {
   const { theme, setTheme } = useContext(ThemeContext);
-  console.log(props)
-  const { location, title, section, children } = props
+
+  const { location, title, section, children, page_image, page_url } = props
   const rootPath = `${__PATH_PREFIX__}/`
   let header
   let breadcrumbs
+  const handleThemeToggle = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
 
   if (location.pathname === rootPath) {
     header = (
       <div>
+        <div className="float-right text-alignright px-5 py-0">
+          <div className="dark-button">
+            <input
+              type="checkbox"
+              id="theme-toggle"
+              onChange={handleThemeToggle}
+              checked={theme === 'dark' ? true : false}
+            /> Dark Mode &nbsp;
+          <label for="theme-toggle"></label>
+          </div>
+        </div>
         <h1 className="text-5xl mb-10 mt-0 py-5">
           <Link className="shadow-none" to={`/`}>
             {title}
@@ -30,59 +47,54 @@ const Layout = (props) => {
     )
   } else {
     header = (
-      <div>
-        <h3 className="text-2xl mt-0 py-5">
-          <Link className="shadow-none" to={`/`}>
+      <BackgroundImage
+        Tag="div"
+        // style={{ filter: 'blur(4px)' }}
+        // backgroundColor={`#040e18`}
+        // className={className}
+        fluid={page_image}
+      >
+        <div className="float-right text-alignright px-5 py-0">
+          <div className="dark-button">
+            <input
+              type="checkbox"
+              id="theme-toggle"
+              onChange={handleThemeToggle}
+              checked={theme === 'dark' ? true : false}
+            /> Dark Mode &nbsp;
+          <label for="theme-toggle"></label>
+          </div>
+        </div>
+        <h2 className="text-5xl px-20 py-10 mt-0 mb-0">
+          <Link className="shadow-none stroked" to={`/`}>
             {title}
           </Link>
-        </h3>
-      </div>
+        </h2>
+        <p className="leading-loose px-20 pb-10 bg-nav">
+          <Link className="" to={`/`}>
+            /
+          </Link>&nbsp;::&nbsp;<Link
+            className=""
+            to={`/${kebabCase(section)}/`}
+          >
+            {section}
+          </Link>&nbsp;::&nbsp;<span className="text-gray">/{page_url}</span>
+        </p>
+      </BackgroundImage>
     )
   }
-  if (location.pathname !== rootPath) {
-    breadcrumbs = (
-      <p className="text-sm leading-loose mb-8">
-        <Link
-          className="text-notion-blue-txt"
-          to={`/${kebabCase(section)}/`}
-        >
-          {capitalize(section)}
-        </Link>
-      </p>)
-  }
-
-  const handleThemeToggle = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  };
-
   return (
     <div
       className={`${theme === 'light' ? 'theme-light' : 'theme-dark'
-        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 px-0 py-5 min-h-screen`}>
-      <div className="float-right text-alignright px-5 py-0">
-        <div className="dark-button">
-          <input
-            type="checkbox"
-            id="theme-toggle"
-            onChange={handleThemeToggle}
-            checked={theme === 'dark' ? true : false}
-          /> Dark Mode &nbsp;
-          <label for="theme-toggle"></label>
-        </div>
-
-      </div>
-      <div className="float-none max-w-4xl mx-auto px-5 py-0">
-        <header>{header}{breadcrumbs}</header>
+        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 px-0 py-0 min-h-screen`}>
+      <div className="float-none mx-auto px-5 py-0">
+        <header>{header}</header>
       </div>
 
-      <main className="max-w-4xl mx-auto px-5 py-0">
+      <main className="max-w-5xl mx-auto px-5 py-0">
         {children}
       </main>
-      <footer className="max-w-4xl mx-auto px-5 py-5 ">
+      <footer className="max-w-6xl mx-auto px-5 py-5 ">
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
@@ -91,70 +103,8 @@ const Layout = (props) => {
   );
 };
 
-
-
-
-
-
-// class Layout extends React.Component {
-//   render () {
-//     const { location, title, children, section } = this.props
-//     const rootPath = `${__PATH_PREFIX__}/`
-//     let header
-//     let breadcrumbs
-
-//     if (location.pathname === rootPath) {
-//       header = (
-//         <div>
-//           <h1 className="text-6xl font-black font-sans mb-10 mt-0">
-//             <Link className="shadow-none" to={`/`}>
-//               {title}
-//             </Link>
-//           </h1>
-//         </div>
-//       )
-//     } else {
-//       header = (
-//         <div>
-//           <h3 className="text-2xl font-sans font-black mt-0">
-//             <Link className="shadow-none" to={`/`}>
-//               {title}
-//             </Link>
-//           </h3>
-//         </div>
-//       )
-//     }
-//     if (location.pathname !== rootPath) {
-//       breadcrumbs = (
-//         <p className="text-sm leading-loose mb-8">
-//           <Link
-//             className="text-notion-blue-txt"
-//             to={`/${kebabCase(section)}/`}
-//           >
-//             {capitalize(section)}
-//           </Link>
-//         </p>)
-//     }
-//     return (
-//       <div className="max-w-2xl mx-auto px-5 py-10 theme-dark bg-DEFAULT-bkg text-DEFAULT-txt">
-//         <header>{header}</header>
-//         <main>{breadcrumbs}{children}</main>
-//         <footer>
-//           © {new Date().getFullYear()}, Built with
-//           {` `}
-//           <a className="text-notion-blue-txt" href="https://www.gatsbyjs.org">
-//             Gatsby
-//           </a>
-//         </footer>
-//       </div>
-//     )
-//   }
-// }
-
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-// Layout.propTypes = {
-// };
 
 export default Layout

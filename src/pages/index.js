@@ -43,7 +43,13 @@ export const query = graphql`
         status
         url
         read_time
-        cover_image
+        coverImg {
+          childImageSharp {
+          fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         slug
         publish_date{
           startDate(formatString: "YYYY-MMM-DD", fromNow: false)

@@ -9,19 +9,22 @@ import SEO from "../components/seo"
 import NotionNav from "../components/NotionNav"
 import findIndex from "lodash/findIndex"
 // import capitalize from "lodash/capitalize"
+// import Img from "gatsby-image"
+// import BackgroundImage from 'gatsby-background-image-es5'
 
 // import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { posts: { title, section, tags, publish_date, html, url, desc, toc, read_time } } = this.props.data
+    const { posts: { title, coverImg, section, tags, publish_date, html, url, desc, toc, read_time } } = this.props.data
+    // PageNav
     const index = findIndex(toc, function (o) { return o.url === url })
     const previous = index === toc.length - 1 ? null : toc[index + 1]
     const next = index === 0 ? null : toc[index - 1]
 
     return (
-      <Layout location={this.props.location} title={siteTitle} section={section}>
+      <Layout location={this.props.location} title={siteTitle} section={section} page_image={coverImg.childImageSharp.fluid} page_url={url}>
         <SEO
           title={title}
           description={desc}
@@ -63,9 +66,17 @@ export const query = graphql`
     posts(slug: { eq: $slug }) {
       html
       title
+      slug
       tags
       section
       read_time
+      coverImg {
+        childImageSharp {
+        fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
       publish_date{
         startDate(formatString: "MMMM Do YYYY", fromNow: false)
       }

@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
-import { parseImageUrl } from '@conradlin/notabase/src/utils'
+// import { parseImageUrl } from '@conradlin/notabase/src/utils'
 import Tags from "../components/tags"
+import Img from "gatsby-image"
 
 export default ({ data }) => {
-  const { title, tags, cover_image, section, publish_date, desc, read_time, url, slug } = data
-  let coverimageURL = parseImageUrl(cover_image[0], 1000, slug)
+  const { title, tags, coverImg, section, publish_date, desc, read_time, url, slug } = data
 
   return (
     <article key={section + "/" + url}>
@@ -15,11 +15,17 @@ export default ({ data }) => {
             className="text-notion-blue-txt shadow-none"
             to={"/" + section + "/" + url}
           >
-            <img
+            {/* <img
               alt={`${title}`}
               style={{ width: '100%' }}
-              src={coverimageURL}
-            />
+              src={coverImg.childImageSharp.fluid}
+            /> */}
+            {coverImg && (
+              <Img
+                fluid={coverImg.childImageSharp.fluid}
+                alt={`${title}`}
+                style={{ height: '200px' }}
+              />)}
             {title}
           </Link>
         </h3>
