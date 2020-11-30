@@ -50,16 +50,30 @@
 
   /* --accent: #fc7753; */
 }
-
+.bg-header{
+  /* background:
+    linear-gradient(
+      rgba(0,0,0,0.1),
+      rgb(0,0,0)
+    ); */
+}
 .text-gray{
   color: hsl(45, 2%, 60%);
 }
-.bg-nav{
-  /* background-color:rgba(83, 156, 202, 0.468); */
+.bg-nav-bottom{
   background:
     linear-gradient(
-      rgba(0,0,0,0.5),
-      rgba(0,0,0,1.0)
+      rgba(0,0,0,0.1),
+      rgb(0,0,0,0.5)
+    );
+  background-size: cover;
+
+}
+.bg-nav-top{
+  background:
+    linear-gradient(
+      rgb(0,0,0,0.5),
+      rgba(0,0,0,0.1)
     );
   background-size: cover;
 

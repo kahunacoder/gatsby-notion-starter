@@ -27,7 +27,7 @@ const Layout = (props) => {
   if (location.pathname === rootPath) {
     header = (
       <div>
-        <div className="float-right text-alignright px-5 py-0">
+        <div className="float-right text-alignright pr-5 py-0">
           <div className="dark-button">
             <input
               type="checkbox"
@@ -38,8 +38,8 @@ const Layout = (props) => {
           <label for="theme-toggle"></label>
           </div>
         </div>
-        <h1 className="text-5xl mb-10 mt-0 py-5">
-          <Link className="shadow-none" to={`/`}>
+        <h1 className="text-5xl pl-20 py-10">
+          <Link className="shadow-none text-notion-DEFAULT-txt pl-6" to={`/`}>
             {title}
           </Link>
         </h1>
@@ -49,36 +49,38 @@ const Layout = (props) => {
     header = (
       <BackgroundImage
         Tag="div"
-        // style={{ filter: 'blur(4px)' }}
-        // backgroundColor={`#040e18`}
-        // className={className}
+        className="bg-header"
         fluid={page_image}
       >
-        <div className="float-right text-alignright px-5 py-0">
-          <div className="dark-button">
+        <div className="float-right text-alignright pr-5 py-0">
+          <div className="dark-button text-white">
             <input
               type="checkbox"
               id="theme-toggle"
               onChange={handleThemeToggle}
               checked={theme === 'dark' ? true : false}
-            /> Dark Mode &nbsp;
-          <label for="theme-toggle"></label>
+            />
+            Dark Mode &nbsp;
+            <label for="theme-toggle"></label>
           </div>
         </div>
-        <h2 className="text-5xl px-20 py-10 mt-0 mb-0">
-          <Link className="shadow-none stroked" to={`/`}>
+        <h2 className="text-5xl pl-20 py-10 bg-nav-top mb-0 mt-0">
+          <Link className="shadow-none text-white pl-6" to={`/`}>
             {title}
           </Link>
         </h2>
-        <p className="leading-loose px-20 pb-10 bg-nav">
-          <Link className="" to={`/`}>
-            /
-          </Link>&nbsp;::&nbsp;<Link
-            className=""
+        <p className="leading-loose pl-20 pt-10 bg-nav-bottom mt-0">
+          <span className="pl-6 text-white">&nbsp;</span>
+          <Link className="text-white" to={`/`}>/</Link>
+          <span className="text-white">&nbsp;::&nbsp;</span>
+          <Link
+            className="text-white"
             to={`/${kebabCase(section)}/`}
           >
             {section}
-          </Link>&nbsp;::&nbsp;<span className="text-gray">/{page_url}</span>
+          </Link>
+          <span className="text-white">&nbsp;::&nbsp;</span>
+          <span className="text-gray">/{page_url}</span>
         </p>
       </BackgroundImage>
     )
