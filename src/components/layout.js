@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from "gatsby"
 import kebabCase from "lodash/kebabCase"
-import capitalize from "lodash/capitalize"
 import PropTypes from 'prop-types';
 import { ThemeContext } from '../context/themeContext';
 import BackgroundImage from 'gatsby-background-image-es5'
-
 // import { rhythm, scale } from "../utils/typography"
-
+import ThemeToggle from "./ThemeToggle"
 
 const Layout = (props) => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -15,28 +13,13 @@ const Layout = (props) => {
   const { location, title, section, children, page_image, page_url } = props
   const rootPath = `${__PATH_PREFIX__}/`
   let header
-  let breadcrumbs
-  const handleThemeToggle = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  };
+
 
   if (location.pathname === rootPath) {
     header = (
       <div>
         <div className="float-right text-alignright pr-5 py-0">
-          <div className="dark-button">
-            <input
-              type="checkbox"
-              id="theme-toggle"
-              onChange={handleThemeToggle}
-              checked={theme === 'dark' ? true : false}
-            /> Dark Mode &nbsp;
-          <label for="theme-toggle"></label>
-          </div>
+          <ThemeToggle toggle={{ theme, setTheme }} />
         </div>
         <h1 className="text-5xl pl-20 py-10">
           <Link className="shadow-none text-notion-DEFAULT-txt pl-6" to={`/`}>
@@ -53,16 +36,7 @@ const Layout = (props) => {
         fluid={page_image}
       >
         <div className="float-right text-alignright pr-5 py-0">
-          <div className="dark-button text-white">
-            <input
-              type="checkbox"
-              id="theme-toggle"
-              onChange={handleThemeToggle}
-              checked={theme === 'dark' ? true : false}
-            />
-            Dark Mode &nbsp;
-            <label for="theme-toggle"></label>
-          </div>
+          <ThemeToggle toggle={{ theme, setTheme }} />
         </div>
         <h2 className="text-5xl pl-20 py-10 bg-nav-top mb-0 mt-0">
           <Link className="shadow-none text-white pl-6" to={`/`}>
@@ -70,17 +44,20 @@ const Layout = (props) => {
           </Link>
         </h2>
         <p className="leading-loose pl-20 pt-10 bg-nav-bottom mt-0">
-          <span className="pl-6 text-white">&nbsp;</span>
-          <Link className="text-white" to={`/`}>/</Link>
-          <span className="text-white">&nbsp;::&nbsp;</span>
-          <Link
-            className="text-white"
-            to={`/${kebabCase(section)}/`}
-          >
-            {section}
-          </Link>
-          <span className="text-white">&nbsp;::&nbsp;</span>
-          <span className="text-gray">/{page_url}</span>
+          <span className="pl-6 text-blue">&nbsp;</span>
+          <Link className="text-blue" to={`/`}>/</Link>
+          {section && (
+            <span>
+              <span className="text-blue">&nbsp;</span>
+              <Link
+                className="text-blue"
+                to={`/${kebabCase(section)}/`}
+              >
+                {section}
+              </Link>
+              <span className="text-white">&nbsp;/</span>
+            </span>)}
+          <span className="text-white">&nbsp;{kebabCase(page_url)}</span>
         </p>
       </BackgroundImage>
     )

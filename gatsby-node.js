@@ -6,19 +6,20 @@ const { parseImageUrl } = require("@conradlin/notabase/src/utils")
 //Hook into the createSchemaCustomization API
 //This hook runs after all our nodes have been created
 exports.createSchemaCustomization = ({ actions, schema }) => {
-  //The createTypes action allows us to create custom types
-  //and modify existing ones
   const { createTypes } = actions
 
+  //The createTypes action allows us to create custom types
+  //and modify existing ones here we add the new coverImage node
+  // that contains information about the local version of cover_image.
   createTypes(`
     type posts implements Node {
       coverImg: File @link(from: "coverImg___NODE")
     }
   `)
 
-  // Create our schema customizations
+  // Create our schema customizations to add a table of contents to the section
+  // each post is in on so on the post page we can use this for pevious/next links
   const typeDefs = [
-    // Replace "sanity_post" with your _typename of your post type
     "type posts implements Node { toc: [posts] }",
     schema.buildObjectType({
       name: "posts",
@@ -101,7 +102,6 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     const posts = result.data.allPosts.edges
     posts.forEach((post) => {
-      // post.node.related.length
       createPage({
         path: "/" + post.node.section + "/" + post.node.url + "/",
         component: blogTemplate,
@@ -143,7 +143,7 @@ exports.onCreateNode = async ({
   cache,
   createNodeId,
 }) => {
-  // For all MarkdownRemark nodes that have a featured image url, call createRemoteFileNode
+  // For all Post nodes that have a cover_image url, call createRemoteFileNode
   if (
     node.internal.type === "posts" &&
     node.cover_image !== null &&

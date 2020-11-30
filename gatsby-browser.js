@@ -9,12 +9,9 @@ import "typeface-merriweather"
 import "tailwindcss/base.css"
 import "tailwindcss/components.css"
 import "tailwindcss/utilities.css"
-// import "tailwindcss/colors.css"
 
-// Markdown formatting, uses Tailwind @apply primitive to apply Tailwind's utility classes to
-// elements created by the Markdown parser
+// Default css with notion colors
 import "./src/notion.css"
-// import "./src/toggle.css"
 
 
 import React from 'react';
@@ -22,6 +19,8 @@ import ThemeContextProvider from './src/context/themeContext';
 export const wrapRootElement = ({ element }) => {
   return <ThemeContextProvider>{element}</ThemeContextProvider>;
 };
+
+// this might be nesacary for older browser comaptibility for background images
 // const io = import(`intersection-observer`)
 
 // export const onClientEntry = () => {

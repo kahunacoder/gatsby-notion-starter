@@ -50,15 +50,11 @@
 
   /* --accent: #fc7753; */
 }
-.bg-header{
-  /* background:
-    linear-gradient(
-      rgba(0,0,0,0.1),
-      rgb(0,0,0)
-    ); */
-}
 .text-gray{
-  color: hsl(45, 2%, 60%);
+  color: hsl(200, 6%, 29%);
+}
+.text-blue{
+  color: hsl(203, 53%, 56%);
 }
 .bg-nav-bottom{
   background:

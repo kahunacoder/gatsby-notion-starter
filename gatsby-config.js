@@ -1,14 +1,40 @@
 module.exports = {
   siteMetadata: {
-    title: `ElectricTailwinds`,
+    title: `KahunaCoder`,
     author: `Gary Smith`,
-    description: `A blog for my life and electric bike tales and tips.`,
-    siteUrl: `http://electrictailwinds.com/`,
+    description: `A blog.`,
+    siteUrl: `http://example.com/`,
+    siteVerification: {
+      google: ``,
+      bing: ``
+    },
     social: {
-      twitter: `electrictailwinds`,
+      twitter: ``,
+      linkedin: ``,
+      facebook: ``,
+      stackOverflow: ``,
+      github: ``,
+      instagram: ``,
+      pinterest: ``,
+      youtube: ``,
+      email: ``,
+      phone: ``,
+      fax: ``,
+      address: ``
+    },
+    keywords: ``,
+    organization: {
+      name: ``,
+      url: ``
     },
   },
   plugins: [
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-feed`,
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-postcss`,
     {
       resolve: `@kahunacoder/docker-notion-database`,
       options: {
@@ -21,7 +47,6 @@ module.exports = {
         ]
       }
     },
-
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -30,36 +55,11 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-        ],
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -72,21 +72,30 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-postcss`,
     {
       resolve: 'gatsby-background-image-es5',
       options: {
         // add your own characters to escape, replacing the default ':/'
         specialChars: '/:',
       },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/tags/links`]
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
     },
   ],
 }

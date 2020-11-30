@@ -8,7 +8,7 @@ import orderBy from "lodash/orderBy"
 
 // import kebabCase from "lodash/kebabCase"
 
-class CatPage extends React.Component {
+class SectionPage extends React.Component {
   render () {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
@@ -36,7 +36,7 @@ class CatPage extends React.Component {
   }
 }
 
-export default CatPage
+export default SectionPage
 
 export const pageQuery = graphql`
   query {

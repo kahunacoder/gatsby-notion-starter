@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostItem from "../components/postItem"
 import capitalize from "lodash/capitalize"
+import sample from "lodash/sample"
 
 class TagsTemplate extends React.Component {
   render () {
@@ -13,10 +14,11 @@ class TagsTemplate extends React.Component {
     const currentTag = this.props.pageContext.tags
     const postsCounter = `${totalCount} post${totalCount === 1 ? "" : "s"
       } tagged with "${currentTag}"`
+    const tags_image = sample(blogPosts).coverImg.childImageSharp.fluid
 
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} page_image={tags_image} page_url={currentTag}>
         <SEO title={currentTag} />
         <h1 className="text-4xl mt-8 mb-0">#{capitalize(currentTag)}</h1>
         <p className="text-sm leading-loose mb-0 ">{postsCounter}</p>

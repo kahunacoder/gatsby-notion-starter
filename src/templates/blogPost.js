@@ -1,18 +1,12 @@
 import React from 'react'
 import { graphql } from "gatsby"
 import Layout from '../components/layout'
-// import { parseImageUrl } from '@conradlin/notabase/src/utils'
 import Tags from "../components/tags"
 
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 import NotionNav from "../components/NotionNav"
 import findIndex from "lodash/findIndex"
-// import capitalize from "lodash/capitalize"
-// import Img from "gatsby-image"
-// import BackgroundImage from 'gatsby-background-image-es5'
-
-// import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render () {
@@ -31,12 +25,12 @@ class BlogPostTemplate extends React.Component {
         />
         <article>
           <header>
-            <h1 className="text-5xl text-notion-DEFAULT-txt mt-4 mb-0">
+            <h1 className="text-5xl text-notion-DEFAULT-txt mt-4 mb-1">
               {title}
             </h1>
-            <p className="text-sm leading-loose mb-4 ">
-              <strong>Published:</strong> {publish_date.startDate}
-              <span className="float-right text-right">Read Time: ~{read_time} mins</span>
+            <p className="px-2 text-sm leading-loose mb-4 bg-notion-gray-bkg">
+              <strong className="text-notion-green-txt">Published:</strong> {publish_date.startDate}
+              <span className="float-right text-right"><strong className="text-notion-green-txt">Read Time:</strong> ~{read_time} mins</span>
               <Tags listOfTags={tags} />
             </p>
           </header>
