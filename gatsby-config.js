@@ -41,7 +41,7 @@ module.exports = {
         sourceConfig: [
           {
             name: 'posts',
-            table: 'https://www.notion.so/electrictailwinds/b4cae018a56b4fd798665a3799d16d0f?v=53fa0a5867644ca6b7fb9938045b460a',
+            table: 'https://www.notion.so/kahunacoder/b3189a381ce8490796fea90fa68310c2?v=4a46e38c7e514dee8ffbaf3ad690313e',
             cacheType: 'html'
           }
         ]
