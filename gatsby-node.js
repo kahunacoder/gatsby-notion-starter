@@ -31,8 +31,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
               query: {
                 filter: {
                   section: { eq: source.section },
-                  status: { eq: "published" },
-                  content_type: { eq: "article" }
+                  status: { eq: "published" }
                 },
                 sort: {
                   fields: ["publish_date.startDate"],
@@ -59,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogPost = await graphql(`
   query {
       allPosts(
-        filter: {status: {eq: "published"}, content_type: {eq: "article"}}
+        filter: {status: {eq: "published"}}
         sort: { fields: [publish_date___startDate], order: DESC }
       ) {
         edges {
@@ -81,7 +80,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       sectionsGroup: allPosts(
         limit: 2000
-        filter: {status: {eq: "published"}, content_type: {eq: "article"}}
+        filter: {status: {eq: "published"}}
         ) {
         group(field: section) {
           fieldValue
@@ -89,7 +88,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       tagsGroup: allPosts(
         limit: 2000
-        filter: {status: {eq: "published"}, content_type: {eq: "article"}}
+        filter: {status: {eq: "published"}}
         ) {
         group(field: tags) {
           fieldValue
