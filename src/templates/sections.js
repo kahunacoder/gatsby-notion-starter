@@ -14,7 +14,16 @@ class SectionsTemplate extends React.Component {
     const currentSection = this.props.pageContext.section
     const postsCounter = `${totalCount} Article${totalCount === 1 ? "" : "s"
       } in the "${currentSection}" section`
-    const section_image = sample(blogPosts).coverImg.childImageSharp.fluid
+
+
+    let section_image = sample(blogPosts).coverImg
+    // if (section_image.childImageSharp) {
+    //   section_image = section_image.childImageSharp.fluid
+    // }
+    // else {
+    //   section_image = section_image.publicURL
+    // }
+
 
     return (
       <Layout location={this.props.location} title={siteTitle} page_image={section_image} page_url={currentSection}>
@@ -41,7 +50,7 @@ export const pageQuery = graphql`
     }
     allPosts(
       sort: { fields: [publish_date___startDate], order: DESC }
-      filter: {  section: { in: [$section] } status: {eq: "published"}, content_type: {eq: "article"}}
+      filter: {  section: { in: [$section] } status: {eq: "published"}}
       )
       {
       totalCount
@@ -56,6 +65,7 @@ export const pageQuery = graphql`
         read_time
         cover_image
         coverImg {
+          publicURL
           childImageSharp {
           fluid {
               ...GatsbyImageSharpFluid

@@ -46,8 +46,7 @@ export const pageQuery = graphql`
       }
     }
     sectionsGroup: allPosts(
-      limit: 2000
-      filter: {status: {eq: "published"}, content_type: {eq: "article"}}
+      filter: {status: {eq: "published"}}
     )
     {
       group(field: section) {

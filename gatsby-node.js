@@ -159,6 +159,7 @@ exports.onCreateNode = async ({
     })
     // if the file was created, attach the new node to the parent node
     if (fileNode) {
+      // console.log(fileNode.ext)
       node.coverImg___NODE = fileNode.id
     }
   }

@@ -1,21 +1,20 @@
 import React, { useContext } from 'react';
 import { Link } from "gatsby"
-import kebabCase from "lodash/kebabCase"
 import PropTypes from 'prop-types';
 import { ThemeContext } from '../context/themeContext';
-import BackgroundImage from 'gatsby-background-image-es5'
+import GatsbyBackgroundImage from './GatsbyBackgroundImage'
 // import { rhythm, scale } from "../utils/typography"
 import ThemeToggle from "./ThemeToggle"
 
 const Layout = (props) => {
   const { theme, setTheme } = useContext(ThemeContext);
 
-  const { location, title, section, children, page_image, page_url } = props
-  const rootPath = `${__PATH_PREFIX__}/`
+  const { title, children, page_image } = props
+  // const rootPath = `${__PATH_PREFIX__}/`
   let header
+  console.log(page_image)
 
-
-  if (location.pathname === rootPath) {
+  if (!page_image || page_image == '') {
     header = (
       <div>
         <div className="float-right text-alignright pr-5 py-0">
@@ -30,10 +29,10 @@ const Layout = (props) => {
     )
   } else {
     header = (
-      <BackgroundImage
+      <GatsbyBackgroundImage
         Tag="div"
         className="bg-header"
-        fluid={page_image}
+        node={page_image}
       >
         <div className="float-right text-alignright pr-5 py-0">
           <ThemeToggle toggle={{ theme, setTheme }} />
@@ -43,23 +42,7 @@ const Layout = (props) => {
             {title}
           </Link>
         </h2>
-        <p className="leading-loose pl-20 pt-10 bg-nav-bottom mt-0">
-          <span className="pl-6 text-blue">&nbsp;</span>
-          <Link className="text-blue" to={`/`}>/</Link>
-          {section && (
-            <span>
-              <span className="text-blue">&nbsp;</span>
-              <Link
-                className="text-blue"
-                to={`/${kebabCase(section)}/`}
-              >
-                {section}
-              </Link>
-              <span className="text-white">&nbsp;/</span>
-            </span>)}
-          <span className="text-white">&nbsp;{kebabCase(page_url)}</span>
-        </p>
-      </BackgroundImage>
+      </GatsbyBackgroundImage>
     )
   }
   return (

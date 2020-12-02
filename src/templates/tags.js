@@ -14,7 +14,7 @@ class TagsTemplate extends React.Component {
     const currentTag = this.props.pageContext.tags
     const postsCounter = `${totalCount} post${totalCount === 1 ? "" : "s"
       } tagged with "${currentTag}"`
-    const tags_image = sample(blogPosts).coverImg.childImageSharp.fluid
+    const tags_image = sample(blogPosts).coverImg
 
 
     return (
@@ -43,7 +43,7 @@ export const pageQuery = graphql`
     }
     allPosts(
       sort: { fields: [publish_date___startDate], order: DESC }
-      filter: {  tags: { in: [$tags] } status: {eq: "published"}, content_type: {eq: "article"}}
+      filter: {  tags: { in: [$tags] } status: {eq: "published"}}
       )
       {
       totalCount
@@ -56,7 +56,9 @@ export const pageQuery = graphql`
         status
         url
         read_time
+        cover_image
         coverImg {
+          publicURL
           childImageSharp {
           fluid {
               ...GatsbyImageSharpFluid

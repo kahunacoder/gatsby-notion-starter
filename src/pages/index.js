@@ -30,8 +30,7 @@ export const query = graphql`
       }
     }
     allPosts(
-      limit: 2000,
-      filter: { status: {eq: "published"}, content_type: {eq: "article"}},
+      filter: { status: {eq: "published"}},
       sort: { fields: [publish_date___startDate], order: DESC }
     ) {
       nodes {
@@ -40,10 +39,12 @@ export const query = graphql`
         tags
         desc
         content_type
+        cover_image
         status
         url
         read_time
         coverImg {
+          publicURL
           childImageSharp {
           fluid {
               ...GatsbyImageSharpFluid

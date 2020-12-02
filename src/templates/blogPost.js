@@ -1,8 +1,7 @@
 import React from 'react'
 import { graphql } from "gatsby"
 import Layout from '../components/layout'
-import Tags from "../components/tags"
-
+import PostDetails from '../components/PostDetails'
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 import NotionNav from "../components/NotionNav"
@@ -11,14 +10,14 @@ import findIndex from "lodash/findIndex"
 class BlogPostTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { posts: { title, coverImg, section, tags, publish_date, html, url, desc, toc, read_time } } = this.props.data
+    const { posts: { title, coverImg, section, html, url, desc, toc } } = this.props.data
     // PageNav
     const index = findIndex(toc, function (o) { return o.url === url })
     const previous = index === toc.length - 1 ? null : toc[index + 1]
     const next = index === 0 ? null : toc[index - 1]
 
     return (
-      <Layout location={this.props.location} title={siteTitle} section={section} page_image={coverImg.childImageSharp.fluid} page_url={url}>
+      <Layout location={this.props.location} title={siteTitle} section={section} page_image={coverImg} page_url={url}>
         <SEO
           title={title}
           description={desc}
@@ -28,11 +27,7 @@ class BlogPostTemplate extends React.Component {
             <h1 className="text-5xl text-notion-DEFAULT-txt mt-4 mb-1">
               {title}
             </h1>
-            <p className="px-2 text-sm leading-loose mb-4 bg-notion-gray-bkg">
-              <strong className="text-notion-green-txt">Published:</strong> {publish_date.startDate}
-              <span className="float-right text-right"><strong className="text-notion-green-txt">Read Time:</strong> ~{read_time} mins</span>
-              <Tags listOfTags={tags} />
-            </p>
+            <PostDetails node={this.props.data.posts} />
           </header>
           <section
             dangerouslySetInnerHTML={{ __html: html }}
@@ -64,7 +59,9 @@ export const query = graphql`
       tags
       section
       read_time
+      cover_image
       coverImg {
+        publicURL
         childImageSharp {
         fluid {
             ...GatsbyImageSharpFluid
