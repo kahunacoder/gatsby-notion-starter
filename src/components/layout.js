@@ -13,7 +13,7 @@ const Layout = (props) => {
   let header
   let toggle = (
 
-    <div class="absolute top-0 right-0 h-48 w-48">
+    <div className="absolute top-0 right-0 h-48 w-48">
       <ThemeToggle toggle={{ theme, setTheme }} />
     </div>
 
@@ -50,7 +50,7 @@ const Layout = (props) => {
   return (
     <div
       className={`${theme === 'light' ? 'theme-light' : 'theme-dark'
-        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 px-0 py-0`}>
+        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 px-0 py-0 min-h-screen`}>
       <div className="mx-auto px-5 py-0">
         <header>{header}</header>
       </div>
