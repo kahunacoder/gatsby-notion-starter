@@ -4,8 +4,9 @@ const puppeteer = require('puppeteer');
 process.setMaxListeners(0)
 
 const getPageHtml = async (url) => {
-    const puppeteer_options = { headless: true, args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage'] }
+    let puppeteer_options = {}
     if (process.env.CHROME_BIN !== '') {
+        puppeteer_options = { headless: true, args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage'] }
         puppeteer_options.executablePath = process.env.CHROME_BIN || null;
     }
     const browser = await puppeteer.launch(puppeteer_options);

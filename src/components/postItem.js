@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import GatsbyImage from './GatsbyImage'
+import GatsbyNotionImage from './GatsbyNotionImage'
 import PostDetails from './PostDetails'
 
 export default ({ data }) => {
@@ -13,10 +13,10 @@ export default ({ data }) => {
           className="text-notion-blue-txt shadow-none"
           to={"/" + section + "/" + url}
         >
-          <GatsbyImage
+          <GatsbyNotionImage
             node={coverImg}
             alt={title}
-            style={{ height: '200px' }}
+            style={{ width: '100%', maxHeight: '200px' }}
           />
           <h3 className="text-2xl mt-2 mb-1">{title}</h3>
         </Link>

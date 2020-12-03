@@ -1,7 +1,7 @@
 import React from 'react';
 import GatsbyImage from 'gatsby-image';
 
-export default ({ node, ...props }) => {
+const GatsbyNotionImage = ({ node, ...props }) => {
   if (node.childImageSharp && node.childImageSharp.fluid) {
     return <GatsbyImage fluid={node.childImageSharp.fluid} {...props} />;
   }
@@ -12,3 +12,5 @@ export default ({ node, ...props }) => {
 
   return <img src={node.publicURL} {...props} />;
 };
+
+export default GatsbyNotionImage
