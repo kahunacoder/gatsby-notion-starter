@@ -17,7 +17,7 @@ const PostDetails = ({ node, ...props }) => {
       }
     `
   )
-  console.log(site)
+
   return (
     <p className="px-2 text-sm leading-loose mb-4 bg-notion-gray-bkg">
       <div className="leading-loose">

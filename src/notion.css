@@ -50,6 +50,12 @@
 
   /* --accent: #fc7753; */
 }
+
+
+#siteHeader {
+  transition: top 0.5s
+}
+
 .text-gray{
   color: hsl(200, 6%, 29%);
 }
