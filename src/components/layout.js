@@ -36,7 +36,6 @@ const Layout = (props) => {
         id="siteHeader"
         className="bg-header bg-nav-top"
         node={page_image}
-        style={{ height: '400px' }}
       >
         <div className="bg-nav-top" style={{ height: '400px' }}>
           <h2 className="text-5xl max-w-5xl mx-auto px-5 py-0 ">

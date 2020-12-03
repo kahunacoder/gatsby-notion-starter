@@ -16,7 +16,7 @@ export default ({ data }) => {
           <GatsbyNotionImage
             node={coverImg}
             alt={title}
-            style={{ width: '100%', maxHeight: '200px' }}
+            style={{ minWidth: '100%', maxHeight: '200px' }}
           />
           <h3 className="text-2xl mt-2 mb-1">{title}</h3>
         </Link>
