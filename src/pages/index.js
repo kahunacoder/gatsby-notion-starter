@@ -13,7 +13,7 @@ class BlogIndex extends React.Component {
       <Layout location={this.props.location} title={site.siteMetadata.title}>
         <SEO title="All posts" />
         {
-          allPosts.nodes.map(node => <PostItem data={node} />)
+          allPosts.nodes.map(node => <PostItem data={node} key={node.url} />)
         }
       </Layout>
     )
@@ -46,8 +46,10 @@ export const query = graphql`
         coverImg {
           publicURL
           childImageSharp {
-          fluid {
-              ...GatsbyImageSharpFluid
+          fluid(maxWidth: 1048, maxHeight: 200, quality: 100) {
+            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluidLimitPresentationSize
+            ...GatsbyImageSharpFluid_tracedSVG
             }
           }
         }

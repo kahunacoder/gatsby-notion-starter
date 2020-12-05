@@ -45,6 +45,7 @@ const PostDetails = ({ node, ...props }) => {
           </Link>
         </span>
       </span>
+      <br></br>
       <Tags listOfTags={node.tags} />
     </p>
   )

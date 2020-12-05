@@ -21,7 +21,7 @@ const Layout = (props) => {
 
   )
 
-  if (!page_image || page_image == '') {
+  if (!page_image || page_image === '') {
     header = (
       <h1 className="text-5xl max-w-5xl mx-auto">
         <Link className="leading-loose shadow-none text-notion-DEFAULT-txt pl-6" to={`/`}>
@@ -32,12 +32,13 @@ const Layout = (props) => {
   } else {
     header = (
       <GatsbyBackgroundImage
-        Tag="div"
+        tag="div"
         id="siteHeader"
         className="bg-header bg-nav-top"
         node={page_image}
+      // style={{ backgroundAttachment: 'fixed' }}
       >
-        <div className="bg-nav-top" style={{ height: '400px' }}>
+        <div className="bg-nav-top" style={{ height: '100vh' }}>
           <h2 className="text-5xl max-w-5xl mx-auto px-5 py-0 ">
             <Link className="leading-loose shadow-none text-white" to={`/`}>
               {title}
@@ -50,7 +51,7 @@ const Layout = (props) => {
   return (
     <div
       className={`${theme === 'light' ? 'theme-light' : 'theme-dark'
-        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 px-0 py-0 min-h-screen`}>
+        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 p-0 min-h-screen`}>
       <div className="mx-auto px-5 py-0">
         <header>{header}</header>
       </div>

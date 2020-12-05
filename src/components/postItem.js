@@ -7,8 +7,8 @@ export default ({ data }) => {
   const { title, coverImg, section, desc, url } = data
 
   return (
-    <article key={section + "/" + url}>
-      <header>
+    <article key={url}>
+      <header className="mt-2 mb-1">
         <Link
           className="text-notion-blue-txt shadow-none"
           to={"/" + section + "/" + url}
@@ -16,13 +16,15 @@ export default ({ data }) => {
           <GatsbyNotionImage
             node={coverImg}
             alt={title}
-            style={{ minWidth: '100%', maxHeight: '200px' }}
+            className="mb-0"
+            style={{ maxHeight: '200px', minWidth: '100%' }}
           />
-          <h3 className="text-2xl mt-2 mb-1">{title}</h3>
+          <h3 className="text-2xl mt-1">{title}</h3>
+
         </Link>
-        <PostDetails node={data} />
       </header>
       <section>
+        <PostDetails node={data} />
         <p
           className="mb-8 mt-2"
           dangerouslySetInnerHTML={{ __html: desc }}

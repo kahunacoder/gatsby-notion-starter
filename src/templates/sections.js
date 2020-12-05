@@ -31,7 +31,7 @@ class SectionsTemplate extends React.Component {
         <h1 className="text-4xl mt-8 mb-0">{capitalize(currentSection)}</h1>
         <p className="text-sm leading-loose mb-0 ">{postsCounter}</p>
         {
-          blogPosts.map(node => <PostItem data={node} />)
+          blogPosts.map(node => <PostItem data={node} key={node.url} />)
         }
         <Link to="/sections">View all sections</Link>
       </Layout >
@@ -67,7 +67,7 @@ export const pageQuery = graphql`
         coverImg {
           publicURL
           childImageSharp {
-          fluid {
+          fluid(maxHeight: 200) {
               ...GatsbyImageSharpFluid
             }
           }

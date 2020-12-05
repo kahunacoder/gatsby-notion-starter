@@ -10,13 +10,13 @@ const Tags = props => {
   }
   // Display a list of tags for the current blog post.
   return (
-    <p>
+    <span>
       <strong className="text-notion-green-txt">Tags:</strong>{" "}
       {props.listOfTags.map((tag, i) => [
         i > 0 && ", ",
-        <span>#<Link to={`/tags/${kebabCase(tag)}/`} key={i}>{tag}</Link></span>
+        <span key={i}>#<Link to={`/tags/${kebabCase(tag)}/`} key={i}>{tag}</Link></span>
       ])}
-    </p>
+    </span>
   )
 }
 
