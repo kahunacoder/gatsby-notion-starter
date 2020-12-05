@@ -6,8 +6,6 @@ import SEO from "../components/seo"
 import capitalize from "lodash/capitalize"
 import orderBy from "lodash/orderBy"
 
-// import kebabCase from "lodash/kebabCase"
-
 class SectionPage extends React.Component {
   render () {
     const { data } = this.props

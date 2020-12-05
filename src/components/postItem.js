@@ -20,11 +20,10 @@ export default ({ data }) => {
             style={{ maxHeight: '200px', minWidth: '100%' }}
           />
           <h3 className="text-2xl mt-1">{title}</h3>
-
         </Link>
       </header>
       <section>
-        <PostDetails node={data} />
+        <PostDetails node={data} key={url} />
         <p
           className="mb-8 mt-2"
           dangerouslySetInnerHTML={{ __html: desc }}

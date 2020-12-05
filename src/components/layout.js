@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { Link } from "gatsby"
 import PropTypes from 'prop-types';
 import { ThemeContext } from '../context/themeContext';
-// import GatsbyHeader from './GatsbyHeader'
-// import { rhythm, scale } from "../utils/typography"
 import ThemeToggle from "./ThemeToggle"
 import GatsbyBackgroundImage from './GatsbyBackgroundImage'
 
@@ -11,14 +9,11 @@ const Layout = (props) => {
   const { theme, setTheme } = useContext(ThemeContext);
   const { title, children, page_image } = props
   let header
-  let toggle = (
 
+  let toggle = (
     <div className="absolute top-0 right-0 h-48 w-48">
       <ThemeToggle toggle={{ theme, setTheme }} />
     </div>
-
-
-
   )
 
   if (!page_image || page_image === '') {
@@ -36,7 +31,6 @@ const Layout = (props) => {
         id="siteHeader"
         className="bg-header bg-nav-top"
         node={page_image}
-      // style={{ backgroundAttachment: 'fixed' }}
       >
         <div className="bg-nav-top" style={{ height: '100vh' }}>
           <h2 className="text-5xl max-w-5xl mx-auto px-5 py-0 ">

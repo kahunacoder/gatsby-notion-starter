@@ -1,6 +1,5 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostItem from "../components/postItem"
@@ -14,16 +13,7 @@ class SectionsTemplate extends React.Component {
     const currentSection = this.props.pageContext.section
     const postsCounter = `${totalCount} Article${totalCount === 1 ? "" : "s"
       } in the "${currentSection}" section`
-
-
     let section_image = sample(blogPosts).coverImg
-    // if (section_image.childImageSharp) {
-    //   section_image = section_image.childImageSharp.fluid
-    // }
-    // else {
-    //   section_image = section_image.publicURL
-    // }
-
 
     return (
       <Layout location={this.props.location} title={siteTitle} page_image={section_image} page_url={currentSection}>

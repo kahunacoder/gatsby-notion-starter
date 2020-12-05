@@ -1,12 +1,10 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostItem from "../components/postItem"
 import capitalize from "lodash/capitalize"
 import sample from "lodash/sample"
-
 class TagsTemplate extends React.Component {
   render () {
     const siteTitle = this.props.data.site.siteMetadata.title
@@ -15,7 +13,6 @@ class TagsTemplate extends React.Component {
     const postsCounter = `${totalCount} post${totalCount === 1 ? "" : "s"
       } tagged with "${currentTag}"`
     const tags_image = sample(blogPosts).coverImg
-
 
     return (
       <Layout location={this.props.location} title={siteTitle} page_image={tags_image} page_url={currentTag}>

@@ -2,9 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import PostItem from "../components/postItem"
 import Layout from '../components/layout'
-
 import SEO from "../components/seo"
-// import { rhythm } from "../utils/typography"
 class BlogIndex extends React.Component {
   render () {
     const { data: { allPosts } } = this.props
