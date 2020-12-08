@@ -11,7 +11,7 @@ const GatsbyNotionImage = ({ node, ...props }) => {
     return <Img fixed={node.childImageSharp.fixed} {...props} />;
   }
 
-  return <img src={node.publicURL} alt={node.title} {...props} />;
+  return <img src={node.url} alt={node.title} {...props} />;
 };
 
 export default GatsbyNotionImage

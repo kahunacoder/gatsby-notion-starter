@@ -29,12 +29,17 @@ module.exports = {
     },
   },
   plugins: [
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-transformer-sharp`,
+      options: {
+        checkSupportedExtensions: false,
+      },
+    },
     {
       resolve: `@kahunacoder/docker-notion-database`,
       options: {
@@ -100,7 +105,7 @@ module.exports = {
   ],
   flags: {
     PRESERVE_WEBPACK_CACHE: true,
-    FAST_DEV: true,
-    PRESERVE_FILE_DOWNLOAD_CACHE: true
+    FAST_DEV: false,
+    PRESERVE_FILE_DOWNLOAD_CACHE: false
   }
 }

@@ -10,7 +10,7 @@ const GatsbyBackgroundImage = ({ node, ...props }) => {
     return <BackgroundImage fixed={node.childImageSharp.fixed} style={{ backgroundAttachment: 'fixed' }} {...props} />;
   }
 
-  return <div style={{ backgroundImage: `url(` + node.publicURL + `)` }} {...props} />;
+  return <div style={{ backgroundImage: `url(` + node.url + `)` }} {...props} />;
 };
 
 export default GatsbyBackgroundImage

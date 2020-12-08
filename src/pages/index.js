@@ -42,12 +42,12 @@ export const query = graphql`
         url
         read_time
         coverImg {
+          url
           publicURL
           childImageSharp {
           fluid(maxWidth: 1048, maxHeight: 200, quality: 100) {
-            ...GatsbyImageSharpFluid
-            ...GatsbyImageSharpFluidLimitPresentationSize
-            ...GatsbyImageSharpFluid_tracedSVG
+              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_tracedSVG
             }
           }
         }

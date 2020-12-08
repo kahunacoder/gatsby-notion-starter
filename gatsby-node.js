@@ -2,6 +2,9 @@ const path = require(`path`)
 const kebabCase = require("lodash/kebabCase")
 const { createRemoteFileNode } = require("gatsby-source-filesystem")
 const { parseImageUrl } = require("@conradlin/notabase/src/utils")
+const sharp = require('sharp')
+sharp.simd(false)
+sharp.cache(false)
 
 //Hook into the createSchemaCustomization API
 //This hook runs after all our nodes have been created
