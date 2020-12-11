@@ -1,9 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `KahunaCoder`,
-    author: `Gary Smith`,
+    title: `My Blog`,
     description: `A blog.`,
     siteUrl: `http://example.com/`,
+    author: {
+      name: `First Last`,
+      location: `AnyWhere`
+    },
     siteVerification: {
       google: ``,
       bing: ``
