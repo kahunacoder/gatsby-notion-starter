@@ -12,9 +12,3 @@ import "tailwindcss/utilities.css"
 
 // Default css with notion colors
 import "./src/notion.css"
-
-import React from 'react';
-import ThemeContextProvider from './src/context/themeContext';
-export const wrapRootElement = ({ element }) => {
-  return <ThemeContextProvider>{element}</ThemeContextProvider>;
-};

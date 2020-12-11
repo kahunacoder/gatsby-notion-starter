@@ -1,18 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from "gatsby"
 import PropTypes from 'prop-types';
-import { ThemeContext } from '../context/themeContext';
-import ThemeToggle from "./ThemeToggle"
+import DarkModeToggle from "./DarkModeToggle"
 import GatsbyBackgroundImage from './GatsbyBackgroundImage'
 
 const Layout = (props) => {
-  const { theme, setTheme } = useContext(ThemeContext);
   const { title, children, page_image } = props
   let header
 
   let toggle = (
-    <div className="absolute top-0 right-0 h-48 w-48">
-      <ThemeToggle toggle={{ theme, setTheme }} />
+    <div className="absolute top-0 right-0 pr-6 pt-3 pb-3">
+      <DarkModeToggle />
     </div>
   )
 
@@ -44,8 +42,7 @@ const Layout = (props) => {
   }
   return (
     <div
-      className={`${theme === 'light' ? 'theme-light' : 'theme-dark'
-        } bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 p-0 min-h-screen`}>
+      className="bg-notion-DEFAULT-bkg text-notion-DEFAULT-txt transition-all duration-300 m-0 p-0 min-h-screen">
       <div className="mx-auto px-5 py-0">
         <header>{header}</header>
       </div>

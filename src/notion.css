@@ -1,6 +1,6 @@
 /* Notion Color Table */
 
-.theme-light {
+.light-mode {
   --text-notion-DEFAULT: hsl(45, 8%, 20%);
   --text-notion-gray: hsl(45, 2%, 60%);
   --text-notion-orange:hsl(30, 89%, 45%);
@@ -24,7 +24,7 @@
   --bg-notion-green: hsl(169, 31%, 90%);
   --bg-notion-code: hsl(45, 20%, 96%);
 }
-.theme-dark {
+.dark-mode {
   --text-notion-DEFAULT: hsl(0, 0%, 90%);
   --text-notion-gray: hsla(195, 2%, 60%, 0.95);
   --text-notion-orange:hsl(30, 100%, 63%);

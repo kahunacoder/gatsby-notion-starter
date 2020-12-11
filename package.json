@@ -23,6 +23,8 @@
     "gatsby-plugin-sharp": "^2.10.0",
     "gatsby-plugin-sitemap": "^2.8.0",
     "gatsby-plugin-typography": "^2.8.0",
+    "gatsby-plugin-use-dark-mode": "^1.2.0",
+    "use-dark-mode": "^2.3.1",
     "gatsby-source-filesystem": "^2.7.0",
     "gatsby-transformer-sharp": "^2.8.0",
     "intersection-observer": "^0.11.0",
