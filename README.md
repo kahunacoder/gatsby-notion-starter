@@ -2,7 +2,7 @@
 
 Kick off your project with this blog boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React and [TailwindCSS](https://tailwindcss.com/), a utility-first CSS framework for rapidly building custom designs.
 
-I've added notion.so as a cms as well as some plugins for seo, web site performance, rss feeds and support for dark mode.
+I've added [Notion.so](https://notion.so/) as a cms as well as some plugins for seo, web site performance, rss feeds and support for dark mode.
 
 _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
 
@@ -10,9 +10,9 @@ _Have another more specific idea? You may want to check out our vibrant collecti
 
 Software Requirements
 
-* Docker
-* Git
-* Text editor (VS code recommended)
+* [Docker](https://www.docker.com/products/docker-desktop)
+* [Git](https://git-scm.com/downloads)
+* Text editor ([VS code](https://code.visualstudio.com/download) recommended)
 * Terminal or (VS Code's built in terminal)
 
 1. Copy this to a blank text document and replace your name and email
