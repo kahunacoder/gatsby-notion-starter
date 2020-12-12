@@ -30,7 +30,7 @@ https://github.com/kahunacoder/docker-gatsby.git -t gatsby-blog
 ```docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 gatsby-blog develop```
 1. Proceede to step 3 below.
 
-## 🚀 Quick start
+## 🚀 Quick start if Gatsby is installed locally
 
 1. **Create a Gatsby site.**
 
@@ -50,19 +50,99 @@ https://github.com/kahunacoder/docker-gatsby.git -t gatsby-blog
     gatsby develop
     ```
 
-1. **Open the source code and start editing!**
+1. **Open the source code and check the following!**
 
     Your site is now running at `http://localhost:8000`!
 
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-    Open the `my-tailwindcss-blog-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+## Make this site your own
 
-## For more details about developing in the docker container visit this url
+### Edit the sites meta data into your gatsby-config.js file
 
-<https://github.com/kahunacoder/docker-gatsby>
+Replace the `siteMetadata` fields with your own. Remove options you don't use.
 
-## 🧐 What's inside?
+```jsx
+  siteMetadata: {
+    title: `Site Title`,
+    author: `Your name`,
+    description: `A blog.`,
+    siteUrl: `http://example.com/`,
+    siteVerification: {
+      google: ``,
+      bing: ``
+    },
+    social: {
+      twitter: ``,
+      linkedin: ``,
+      facebook: ``,
+      stackOverflow: ``,
+      github: ``,
+      instagram: ``,
+      pinterest: ``,
+      youtube: ``,
+      email: ``,
+      phone: ``,
+      fax: ``,
+      address: ``
+    },
+    keywords: ``,
+    organization: {
+      name: ``,
+      url: ``
+    },
+  },
+```
+
+### Duplicate the content table
+
+Duplicate the table at <https://www.notion.so/kahunacoder/b3189a381ce8490796fea90fa68310c2?v=4a46e38c7e514dee8ffbaf3ad690313e>
+
+### Edit this piece of code into your `gatsby-config.js` file
+
+Replace the `table` url with the one you duplicated in the previuos step.
+
+```jsx
+plugins: [
+    {
+      resolve: `@kahunacoder/docker-notion-database`,
+      options: {
+        sourceConfig: [
+          {
+            name: 'posts',
+            table: 'https://www.notion.so/kahunacoder/b3189a381ce8490796fea90fa68310c2?v=4a46e38c7e514dee8ffbaf3ad690313e',
+            cacheType: 'html'
+          }
+        ]
+      }
+    }
+]
+```
+
+### Save your changes and stop the development server
+
+In your terminal hold the `control` key down and press the `c` key
+
+### Restart the development server in docker
+
+ Verify your changes by pasting this (edit as needed) into the termianl and visiting <http://localhost:8000>
+
+```docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 gatsby-blog develop```
+
+Commands
+
+* ```docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 gatsby-blog sh```
+* ```docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 gatsby-blog develop```
+* ```docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 gatsby-blog develop-no-cache```
+* ```docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 gatsby-blog stage```
+* ```docker run -it --rm -v $(pwd)/site:/site -p 8000:8000 gatsby-blog build```
+
+## Developing in the docker container?
+
+Visit this url <https://github.com/kahunacoder/docker-gatsby>
+
+
+## 🧐 What's inside this starter?
 
 A quick look at the top-level files and directories you'll see in a Gatsby project.
 
