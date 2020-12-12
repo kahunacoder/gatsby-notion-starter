@@ -35,6 +35,10 @@ module.exports = {
       },
     },
   },
+  future: {
+    purgeLayersByDefault: false,
+  },
+  purge: false,
   variants: {},
   plugins: [
     require('@tailwindcss/typography'),

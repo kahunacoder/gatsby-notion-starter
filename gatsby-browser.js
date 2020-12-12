@@ -12,3 +12,11 @@ import "tailwindcss/utilities.css"
 
 // Default css with notion colors
 import "./src/notion.css"
+
+export const onClientEntry = () => {
+  // IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
+  if (!(`IntersectionObserver` in window)) {
+    const { IntersectionObserver } = import(`intersection-observer`)
+    console.log(IntersectionObserver)
+  }
+}

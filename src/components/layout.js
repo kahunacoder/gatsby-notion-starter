@@ -9,7 +9,7 @@ const Layout = (props) => {
   let header
 
   let toggle = (
-    <div className="absolute top-0 right-0 pr-6 pt-3 pb-3">
+    <div className="absolute top-0 right-0 mr-6 mt-1">
       <DarkModeToggle />
     </div>
   )

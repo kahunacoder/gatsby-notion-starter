@@ -32,7 +32,6 @@ module.exports = {
     },
   },
   plugins: [
-    `gatsby-plugin-feed`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-sharp`,
@@ -113,6 +112,66 @@ module.exports = {
       options: {
         policy: [{ userAgent: '*', allow: '/' }]
       }
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allPosts } }) => {
+              return allPosts.edges.map(edge => {
+                return Object.assign({}, {
+                  title: site.siteMetadata.title + " :: " + edge.node.title,
+                  description: edge.node.desc,
+                  date: edge.node.publish_date.startDate,
+                  url: site.siteMetadata.siteUrl + "/" + edge.node.section + "/" + edge.node.url,
+                  guid: site.siteMetadata.siteUrl + "/" + edge.node.section + "/" + edge.node.url,
+                  // custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allPosts(
+                  filter: {status: {eq: "published"}}
+                  sort: { fields: [publish_date___startDate], order: DESC }
+                ) {
+                  edges {
+                    node {
+                      title
+                      url
+                      section
+                      desc
+                      publish_date{
+                        startDate(formatString: "ddd, DD MMM YYYY HH:mm:ss ZZ", fromNow: false)
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Your Site's RSS Feed",
+            // optional configuration to insert feed reference in pages:
+            // if `string` is used, it will be used to create RegExp and then test if pathname of
+            // current page satisfied this regular expression;
+            // if not provided or `undefined`, all pages will have feed reference inserted
+            // match: "^/blog/",
+            // optional configuration to specify external rss feed, such as feedburner
+            link: "https://feeds.feedburner.com/gatsby/blog",
+          },
+        ],
+      },
     },
   ],
   flags: {

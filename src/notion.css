@@ -78,8 +78,16 @@
       rgba(0,0,0,0.1)
     );
   background-size: cover;
-
 }
+
+
+
+@media screen and (max-width: 600px) {
+ .bg-nav-top {
+    background-attachment: scroll;
+  }
+}
+
 .stroked {
    -webkit-text-stroke: 1px white;
    color: hsl(198, 87%, 32%);
