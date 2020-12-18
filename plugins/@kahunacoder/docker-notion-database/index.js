@@ -1,1 +1,0 @@
-// for gatsby plugin loader

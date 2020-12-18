@@ -51,7 +51,7 @@ module.exports = {
       },
     },
     {
-      resolve: `@kahunacoder/docker-notion-database`,
+      resolve: `@kahunacoder/gatsby-source-notion-database`,
       options: {
         sourceConfig: [
           {
@@ -173,10 +173,5 @@ module.exports = {
         ],
       },
     },
-  ],
-  flags: {
-    PRESERVE_WEBPACK_CACHE: true,
-    FAST_DEV: false,
-    PRESERVE_FILE_DOWNLOAD_CACHE: false
-  }
+  ]
 }
