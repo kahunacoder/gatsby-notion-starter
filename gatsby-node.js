@@ -1,5 +1,6 @@
 const path = require(`path`)
 const kebabCase = require("lodash/kebabCase")
+const isArray = require("lodash/isArray")
 const { createRemoteFileNode } = require("gatsby-source-filesystem")
 const { parseImageUrl } = require("@conradlin/notabase/src/utils")
 const sharp = require('sharp')
@@ -149,7 +150,7 @@ exports.onCreateNode = async ({
   if (
     node.internal.type === "posts" &&
     node.cover_image !== null &&
-    node.cover_image[0] !== null
+    isArray(node.cover_image)
   ) {
     let coverimageURL = parseImageUrl(node.cover_image[0], 1048, node.slug)
     let fileNode = await createRemoteFileNode({
