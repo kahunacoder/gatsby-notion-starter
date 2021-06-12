@@ -56,7 +56,7 @@ module.exports = {
         sourceConfig: [
           {
             name: 'posts',
-            table: 'https://www.notion.so/kahunacoder/Test-Documents-e5b860202c5f46cba48b50b9673bff50',
+            table: 'https://www.notion.so/kahunacoder/b3189a381ce8490796fea90fa68310c2?v=4a46e38c7e514dee8ffbaf3ad690313e',
             cacheType: 'html'
           }
         ]
